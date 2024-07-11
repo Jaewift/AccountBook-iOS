@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BFz-fw-XGt">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
@@ -11,109 +11,68 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="AccountBook" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="VC" id="BYZ-38-t0r" customClass="ViewController" customModule="AccountBook" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" name="Background"/>
                     </view>
+                    <navigationItem key="navigationItem" id="aRC-sd-f57"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2" y="4"/>
+            <point key="canvasLocation" x="924.4274809160305" y="3.5211267605633805"/>
         </scene>
-        <!--View Controller-->
+        <!--Detail View Controller-->
         <scene sceneID="wIt-D4-dwz">
             <objects>
-                <viewController id="SlI-zm-OCk" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailVC" id="SlI-zm-OCk" customClass="DetailViewController" customModule="AccountBook" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4VR-Qz-mtq">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6월 9일 화요일" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9xU-bR-t0t">
-                                <rect key="frame" x="145.66666666666666" y="70" width="102" height="20"/>
-                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0RA-8i-QwS">
-                                <rect key="frame" x="342" y="63" width="35" height="35"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="35" id="c9R-dC-dEc"/>
-                                    <constraint firstAttribute="height" constant="35" id="gho-mQ-47T"/>
-                                </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="AccountBook_Add"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lzg-Kq-Uz1">
-                                <rect key="frame" x="0.0" y="60" width="40" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="3DO-ig-Wau"/>
-                                    <constraint firstAttribute="width" constant="40" id="d2G-4x-7Zr"/>
-                                </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="AccountBook_Back"/>
-                            </button>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="g4a-5x-eTR"/>
                         <color key="backgroundColor" name="Background"/>
-                        <constraints>
-                            <constraint firstItem="Lzg-Kq-Uz1" firstAttribute="leading" secondItem="g4a-5x-eTR" secondAttribute="leading" id="57e-GG-rQV"/>
-                            <constraint firstItem="g4a-5x-eTR" firstAttribute="trailing" secondItem="0RA-8i-QwS" secondAttribute="trailing" constant="16" id="5Hy-07-gC8"/>
-                            <constraint firstItem="Lzg-Kq-Uz1" firstAttribute="top" secondItem="g4a-5x-eTR" secondAttribute="top" constant="1" id="TAr-rr-mQP"/>
-                            <constraint firstItem="9xU-bR-t0t" firstAttribute="top" secondItem="g4a-5x-eTR" secondAttribute="top" constant="11" id="gdp-Vx-6X4"/>
-                            <constraint firstItem="9xU-bR-t0t" firstAttribute="centerX" secondItem="4VR-Qz-mtq" secondAttribute="centerX" id="hod-Lv-gsr"/>
-                            <constraint firstItem="0RA-8i-QwS" firstAttribute="top" secondItem="g4a-5x-eTR" secondAttribute="top" constant="4" id="knR-MK-3Pz"/>
-                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vMO-Vw-pAE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="676" y="4"/>
+            <point key="canvasLocation" x="2189" y="4"/>
         </scene>
-        <!--View Controller-->
+        <!--Add View Controller-->
         <scene sceneID="sQ2-pB-De8">
             <objects>
-                <viewController id="haZ-dJ-iEz" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddVC" id="haZ-dJ-iEz" customClass="AddViewController" customModule="AccountBook" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZG5-cK-J8w">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="가계부 입력하기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hOr-Gb-srI">
-                                <rect key="frame" x="142.66666666666666" y="70" width="108" height="21"/>
-                                <fontDescription key="fontDescription" name="AppleSDGothicNeo-SemiBold" family="Apple SD Gothic Neo" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SdW-xK-H5Q">
-                                <rect key="frame" x="0.0" y="60" width="40" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="TZz-F7-Yxb"/>
-                                    <constraint firstAttribute="width" constant="40" id="jMN-ac-EiE"/>
-                                </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="AccountBook_Back"/>
-                            </button>
-                        </subviews>
                         <viewLayoutGuide key="safeArea" id="ZMw-HI-nqo"/>
                         <color key="backgroundColor" name="Background"/>
-                        <constraints>
-                            <constraint firstItem="hOr-Gb-srI" firstAttribute="centerX" secondItem="ZG5-cK-J8w" secondAttribute="centerX" id="85R-XH-hFX"/>
-                            <constraint firstItem="hOr-Gb-srI" firstAttribute="top" secondItem="ZMw-HI-nqo" secondAttribute="top" constant="11" id="OoZ-wQ-FPl"/>
-                            <constraint firstItem="SdW-xK-H5Q" firstAttribute="leading" secondItem="ZMw-HI-nqo" secondAttribute="leading" id="RZl-Vl-784"/>
-                            <constraint firstItem="SdW-xK-H5Q" firstAttribute="top" secondItem="ZMw-HI-nqo" secondAttribute="top" constant="1" id="Rjw-3D-wWk"/>
-                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RFl-rO-VTR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1350" y="4"/>
+            <point key="canvasLocation" x="1556" y="4"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Zfe-O8-Ozh">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="BFz-fw-XGt" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="4QV-SJ-9xr">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="idX-rq-84S"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2Z7-Bw-hRg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="144" y="4"/>
         </scene>
     </scenes>
     <resources>
-        <image name="AccountBook_Add" width="23" height="22"/>
-        <image name="AccountBook_Back" width="36" height="44"/>
         <namedColor name="Background">
             <color red="0.10980392156862745" green="0.10980392156862745" blue="0.11764705882352941" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

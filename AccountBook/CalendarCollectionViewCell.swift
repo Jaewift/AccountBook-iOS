@@ -12,22 +12,30 @@ final class CalendarCollectionViewCell: UICollectionViewCell {
     static let identifier = "CalendarCollectionViewCell"
     
     private lazy var dayLabel = UILabel()
+    private lazy var incomeLabel = UILabel()
+    private lazy var expenseLabel = UILabel()
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        self.configure()
+        self.configureDay()
+        self.configureIncome()
+        self.configureExpense()
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.configure()
+        self.configureDay()
+        self.configureIncome()
+        self.configureExpense()
     }
     
     override func prepareForReuse() {
         self.dayLabel.text = nil
+        self.incomeLabel.text = nil
+        self.expenseLabel.text = nil
     }
     
-    private func configure() {
+    private func configureDay() {
         self.addSubview(self.dayLabel)
         self.dayLabel.textColor = .white
         self.dayLabel.font = UIFont(name: "SFPro-Medium", size: 16)
@@ -38,7 +46,37 @@ final class CalendarCollectionViewCell: UICollectionViewCell {
         ])
     }
     
-    func update(day: String) {
+    private func configureIncome() {
+        self.addSubview(self.incomeLabel)
+        self.incomeLabel.textColor = UIColor(red: 43/255, green: 217/255, blue: 104/255, alpha: 1)
+        self.incomeLabel.font = UIFont(name: "SFPro-Regular", size: 11)
+        self.incomeLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            self.incomeLabel.topAnchor.constraint(equalTo: self.dayLabel.bottomAnchor, constant: 15),
+            self.incomeLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor)
+        ])
+    }
+    
+    private func configureExpense() {
+        self.addSubview(self.expenseLabel)
+        self.expenseLabel.textColor = UIColor(red: 103/255, green: 140/255, blue: 46/255, alpha: 1)
+        self.expenseLabel.font = UIFont(name: "SFPro-Regular", size: 11)
+        self.expenseLabel.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            self.expenseLabel.topAnchor.constraint(equalTo: self.incomeLabel.bottomAnchor, constant: 0),
+            self.expenseLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor)
+        ])
+    }
+    
+    func updateDay(day: String) {
         self.dayLabel.text = day
+    }
+    
+    func updateIncome() {
+        self.incomeLabel.text = "+10000"
+    }
+    
+    func updateExpense() {
+        self.expenseLabel.text = "-10000"
     }
 }
