@@ -17,6 +17,7 @@
 		C7A48BA92C3BDA440013304A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7A48BA82C3BDA440013304A /* Assets.xcassets */; };
 		C7A48BAC2C3BDA440013304A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7A48BAA2C3BDA440013304A /* LaunchScreen.storyboard */; };
 		C7DADE572C3C4BD4003137D8 /* SF-Pro.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C7DADE552C3C4BD4003137D8 /* SF-Pro.ttf */; };
+		C7E819C32C42580600F4C39B /* AddCalendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E819C22C42580600F4C39B /* AddCalendarCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		C7A48BAB2C3BDA440013304A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C7A48BAD2C3BDA440013304A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C7DADE552C3C4BD4003137D8 /* SF-Pro.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-Pro.ttf"; path = "../../../../../../../Library/Fonts/SF-Pro.ttf"; sourceTree = "<group>"; };
+		C7E819C22C42580600F4C39B /* AddCalendarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCalendarCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +77,7 @@
 				C7934F8F2C3D12A3003B3245 /* CalendarCollectionViewCell.swift */,
 				C7A027B32C3F960A003C28BA /* AddViewController.swift */,
 				C763DFB32C3FF6FF00D6201E /* DetailViewController.swift */,
+				C7E819C22C42580600F4C39B /* AddCalendarCollectionViewCell.swift */,
 			);
 			path = AccountBook;
 			sourceTree = "<group>";
@@ -160,6 +163,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C7A027B42C3F960A003C28BA /* AddViewController.swift in Sources */,
+				C7E819C32C42580600F4C39B /* AddCalendarCollectionViewCell.swift in Sources */,
 				C7934F902C3D12A3003B3245 /* CalendarCollectionViewCell.swift in Sources */,
 				C7A48BA42C3BDA420013304A /* ViewController.swift in Sources */,
 				C763DFB42C3FF6FF00D6201E /* DetailViewController.swift in Sources */,

@@ -7,6 +7,12 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro.ttf">
+            <string>SFPro-Regular</string>
+            <string>SFPro-Semibold</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -46,13 +52,215 @@
                     <view key="view" contentMode="scaleToFill" id="ZG5-cK-J8w">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="cYX-De-sqz">
+                                <rect key="frame" x="16" y="119" width="114" height="25"/>
+                                <color key="backgroundColor" red="0.16091462970000001" green="0.1604311168" blue="0.17647272350000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="114" id="LZb-p6-gbK"/>
+                                    <constraint firstAttribute="height" constant="24" id="vID-Ua-1l0"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="수입"/>
+                                    <segment title="지출"/>
+                                </segments>
+                                <color key="selectedSegmentTintColor" red="0.35695758459999999" green="0.35660591720000001" blue="0.36862909789999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="가계부 입력하기" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hwe-GQ-rLt">
+                                <rect key="frame" x="142.66666666666666" y="59" width="107.66666666666666" height="20"/>
+                                <fontDescription key="fontDescription" name="SFPro-Semibold" family="SF Pro" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pDC-Nf-ck6">
+                                <rect key="frame" x="10" y="49" width="35" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="Sb5-jX-WCt"/>
+                                    <constraint firstAttribute="width" constant="35" id="ZMA-1v-ieP"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="AccountBook_Back"/>
+                                <connections>
+                                    <action selector="backButton_Tapped:" destination="haZ-dJ-iEz" eventType="touchUpInside" id="KSd-sK-2OB"/>
+                                </connections>
+                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="Ml9-fB-0aW">
+                                <rect key="frame" x="16" y="158" width="361" height="383"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="  날짜" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kGC-Gd-FcY">
+                                        <rect key="frame" x="0.0" y="0.0" width="361" height="44"/>
+                                        <color key="backgroundColor" red="0.1726125181" green="0.17237710949999999" blue="0.1803931892" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="uAV-Iv-F30"/>
+                                        </constraints>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="SFPro-Regular" family="SF Pro" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s0I-yc-meT">
+                                        <rect key="frame" x="0.0" y="53" width="361" height="330"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="330" id="3Jf-e6-NOy"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="kGC-Gd-FcY" firstAttribute="leading" secondItem="Ml9-fB-0aW" secondAttribute="leading" id="0de-WX-9gM"/>
+                                    <constraint firstItem="kGC-Gd-FcY" firstAttribute="top" secondItem="Ml9-fB-0aW" secondAttribute="top" id="Wpf-Mz-lpd"/>
+                                    <constraint firstAttribute="trailing" secondItem="kGC-Gd-FcY" secondAttribute="trailing" id="ahK-iT-e73"/>
+                                    <constraint firstItem="s0I-yc-meT" firstAttribute="leading" secondItem="Ml9-fB-0aW" secondAttribute="leading" id="gWz-JW-Ufb"/>
+                                    <constraint firstAttribute="trailing" secondItem="s0I-yc-meT" secondAttribute="trailing" id="oXY-4k-aPU"/>
+                                    <constraint firstAttribute="bottom" secondItem="s0I-yc-meT" secondAttribute="bottom" id="zy4-Zd-zlF"/>
+                                </constraints>
+                            </stackView>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0fY-sd-mCx">
+                                <rect key="frame" x="120" y="158" width="257" height="44"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Une-15-zGG"/>
+                                </constraints>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="SFPro-Regular" family="SF Pro" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="  카테고리" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cWa-qR-zL3">
+                                <rect key="frame" x="16" y="557" width="361" height="44"/>
+                                <color key="backgroundColor" red="0.1726125181" green="0.17237710949999999" blue="0.1803931892" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="U3g-5E-UWh"/>
+                                </constraints>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="SFPro-Regular" family="SF Pro" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="카테고리를 입력해주세요" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EnP-e6-lW5">
+                                <rect key="frame" x="120" y="557" width="257" height="44"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="aBS-RC-Cwz"/>
+                                </constraints>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="SFPro-Regular" family="SF Pro" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="  내용" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="k3N-ls-N7T">
+                                <rect key="frame" x="16" y="617" width="361" height="44"/>
+                                <color key="backgroundColor" red="0.1726125181" green="0.17237710949999999" blue="0.1803931892" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="2Qo-5m-LkJ"/>
+                                </constraints>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="SFPro-Regular" family="SF Pro" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="내용을 입력해주세요" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bws-ng-f4O">
+                                <rect key="frame" x="120" y="617" width="257" height="44"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="L5z-Xh-E0v"/>
+                                </constraints>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="SFPro-Regular" family="SF Pro" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="  금액" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0qV-XZ-8tM">
+                                <rect key="frame" x="16" y="677" width="361" height="44"/>
+                                <color key="backgroundColor" red="0.1726125181" green="0.17237710949999999" blue="0.1803931892" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="wMq-KQ-GSL"/>
+                                </constraints>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="SFPro-Regular" family="SF Pro" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="금액을 입력해주세요" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WDv-Oe-nQL">
+                                <rect key="frame" x="120" y="677" width="257" height="44"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="gJJ-lb-K9V"/>
+                                </constraints>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="SFPro-Regular" family="SF Pro" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w7T-A7-1xp">
+                                <rect key="frame" x="16" y="743" width="361" height="56"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="4ud-9o-bvz"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="완료하기">
+                                    <fontDescription key="titleFontDescription" name="SFPro-Semibold" family="SF Pro" pointSize="17"/>
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="baseBackgroundColor" red="0.34948098659999999" green="0.75815927979999997" blue="0.39993232490000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                </buttonConfiguration>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nMr-f7-e85">
+                                <rect key="frame" x="16" y="541" width="361" height="1"/>
+                                <color key="backgroundColor" red="0.23535728450000001" green="0.2351230383" blue="0.24313837290000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="Rxc-cS-deX"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="ZMw-HI-nqo"/>
                         <color key="backgroundColor" name="Background"/>
+                        <constraints>
+                            <constraint firstItem="ZMw-HI-nqo" firstAttribute="trailing" secondItem="w7T-A7-1xp" secondAttribute="trailing" constant="16" id="0ep-n2-XDp"/>
+                            <constraint firstItem="WDv-Oe-nQL" firstAttribute="top" secondItem="k3N-ls-N7T" secondAttribute="bottom" constant="16" id="1CA-WC-1CD"/>
+                            <constraint firstItem="ZMw-HI-nqo" firstAttribute="trailing" secondItem="0fY-sd-mCx" secondAttribute="trailing" constant="16" id="4sS-A9-PoP"/>
+                            <constraint firstItem="hwe-GQ-rLt" firstAttribute="top" secondItem="ZMw-HI-nqo" secondAttribute="top" id="5Xe-9Z-Ssd"/>
+                            <constraint firstItem="Ml9-fB-0aW" firstAttribute="top" secondItem="cYX-De-sqz" secondAttribute="bottom" constant="15" id="6Le-zi-x0x"/>
+                            <constraint firstItem="ZMw-HI-nqo" firstAttribute="trailing" secondItem="WDv-Oe-nQL" secondAttribute="trailing" constant="16" id="8mM-cI-0hh"/>
+                            <constraint firstItem="Ml9-fB-0aW" firstAttribute="leading" secondItem="ZMw-HI-nqo" secondAttribute="leading" constant="16" id="8ph-D1-fGz"/>
+                            <constraint firstItem="cYX-De-sqz" firstAttribute="top" secondItem="pDC-Nf-ck6" secondAttribute="bottom" constant="30" id="Bqp-IO-7er"/>
+                            <constraint firstItem="k3N-ls-N7T" firstAttribute="leading" secondItem="ZMw-HI-nqo" secondAttribute="leading" constant="16" id="C8m-9v-Mat"/>
+                            <constraint firstItem="ZMw-HI-nqo" firstAttribute="trailing" secondItem="Ml9-fB-0aW" secondAttribute="trailing" constant="16" id="DY8-TN-Kaz"/>
+                            <constraint firstItem="bws-ng-f4O" firstAttribute="top" secondItem="cWa-qR-zL3" secondAttribute="bottom" constant="16" id="DbC-x9-lZe"/>
+                            <constraint firstItem="ZMw-HI-nqo" firstAttribute="trailing" secondItem="k3N-ls-N7T" secondAttribute="trailing" constant="16" id="Duh-tG-TF7"/>
+                            <constraint firstItem="bws-ng-f4O" firstAttribute="leading" secondItem="ZMw-HI-nqo" secondAttribute="leading" constant="120" id="Ead-6y-VJp"/>
+                            <constraint firstItem="nMr-f7-e85" firstAttribute="top" secondItem="Ml9-fB-0aW" secondAttribute="bottom" id="FCH-Ep-FQS"/>
+                            <constraint firstItem="ZMw-HI-nqo" firstAttribute="trailing" secondItem="bws-ng-f4O" secondAttribute="trailing" constant="16" id="FCu-fS-rK3"/>
+                            <constraint firstItem="w7T-A7-1xp" firstAttribute="leading" secondItem="ZMw-HI-nqo" secondAttribute="leading" constant="16" id="Imd-Hg-PN4"/>
+                            <constraint firstItem="nMr-f7-e85" firstAttribute="leading" secondItem="ZG5-cK-J8w" secondAttribute="leading" constant="16" id="LsO-Ez-yM3"/>
+                            <constraint firstItem="ZMw-HI-nqo" firstAttribute="trailing" secondItem="0qV-XZ-8tM" secondAttribute="trailing" constant="16" id="SQv-eD-cft"/>
+                            <constraint firstItem="EnP-e6-lW5" firstAttribute="leading" secondItem="ZMw-HI-nqo" secondAttribute="leading" constant="120" id="SZC-N6-VBF"/>
+                            <constraint firstItem="w7T-A7-1xp" firstAttribute="top" secondItem="0qV-XZ-8tM" secondAttribute="bottom" constant="22" id="Tzg-tS-rQc"/>
+                            <constraint firstItem="ZMw-HI-nqo" firstAttribute="trailing" secondItem="EnP-e6-lW5" secondAttribute="trailing" constant="16" id="ULf-kl-Dwa"/>
+                            <constraint firstItem="cWa-qR-zL3" firstAttribute="leading" secondItem="ZMw-HI-nqo" secondAttribute="leading" constant="16" id="WlR-Yn-STm"/>
+                            <constraint firstItem="hwe-GQ-rLt" firstAttribute="centerX" secondItem="ZG5-cK-J8w" secondAttribute="centerX" id="Wuw-7W-PoW"/>
+                            <constraint firstItem="pDC-Nf-ck6" firstAttribute="centerY" secondItem="hwe-GQ-rLt" secondAttribute="centerY" id="ZMk-B7-EHg"/>
+                            <constraint firstItem="pDC-Nf-ck6" firstAttribute="leading" secondItem="ZMw-HI-nqo" secondAttribute="leading" constant="10" id="aje-5w-wRV"/>
+                            <constraint firstItem="0qV-XZ-8tM" firstAttribute="leading" secondItem="ZMw-HI-nqo" secondAttribute="leading" constant="16" id="bFP-1v-a2k"/>
+                            <constraint firstItem="cWa-qR-zL3" firstAttribute="top" secondItem="nMr-f7-e85" secondAttribute="bottom" constant="15" id="hUR-zh-VlB"/>
+                            <constraint firstItem="ZMw-HI-nqo" firstAttribute="trailing" secondItem="cWa-qR-zL3" secondAttribute="trailing" constant="16" id="irc-F5-2Dx"/>
+                            <constraint firstItem="cYX-De-sqz" firstAttribute="leading" secondItem="ZMw-HI-nqo" secondAttribute="leading" constant="16" id="kjA-aR-F4g"/>
+                            <constraint firstItem="EnP-e6-lW5" firstAttribute="top" secondItem="nMr-f7-e85" secondAttribute="bottom" constant="15" id="loe-CH-2Mq"/>
+                            <constraint firstItem="WDv-Oe-nQL" firstAttribute="leading" secondItem="ZMw-HI-nqo" secondAttribute="leading" constant="120" id="nz8-jN-Cvw"/>
+                            <constraint firstAttribute="trailing" secondItem="nMr-f7-e85" secondAttribute="trailing" constant="16" id="pkC-y9-Llg"/>
+                            <constraint firstItem="0fY-sd-mCx" firstAttribute="top" secondItem="cYX-De-sqz" secondAttribute="bottom" constant="15" id="rmb-n9-WtX"/>
+                            <constraint firstItem="0qV-XZ-8tM" firstAttribute="top" secondItem="k3N-ls-N7T" secondAttribute="bottom" constant="16" id="v0b-ms-BVP"/>
+                            <constraint firstItem="0fY-sd-mCx" firstAttribute="leading" secondItem="ZMw-HI-nqo" secondAttribute="leading" constant="120" id="vh8-il-79b"/>
+                            <constraint firstItem="k3N-ls-N7T" firstAttribute="top" secondItem="cWa-qR-zL3" secondAttribute="bottom" constant="16" id="xpF-zB-33p"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="calendarView" destination="s0I-yc-meT" id="LY3-kZ-dId"/>
+                        <outlet property="categoryTextField" destination="EnP-e6-lW5" id="3e6-K8-JE1"/>
+                        <outlet property="contentTextField" destination="bws-ng-f4O" id="avK-3O-UFh"/>
+                        <outlet property="costTextField" destination="WDv-Oe-nQL" id="366-47-t6a"/>
+                        <outlet property="dateTextField" destination="0fY-sd-mCx" id="95e-aW-HZk"/>
+                        <outlet property="incomeExpenseSegment" destination="cYX-De-sqz" id="crv-rj-5vY"/>
+                        <outlet property="lineLabel" destination="nMr-f7-e85" id="vTM-6Q-QbM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RFl-rO-VTR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1556" y="4"/>
+            <point key="canvasLocation" x="1554.9618320610687" y="3.5211267605633805"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Zfe-O8-Ozh">
@@ -73,6 +281,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="AccountBook_Back" width="36" height="44"/>
         <namedColor name="Background">
             <color red="0.10980392156862745" green="0.10980392156862745" blue="0.11764705882352941" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

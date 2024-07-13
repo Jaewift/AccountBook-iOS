@@ -9,24 +9,33 @@ import UIKit
 
 class AddViewController: UIViewController {
     
-    private lazy var scrollView = UIScrollView()
-    private lazy var contentView = UIView()
-    private lazy var titleLabel = UILabel()
-    private lazy var backButton = UIButton()
-    private lazy var incomeExpenseSegment = UISegmentedControl()
-    private lazy var textfieldStackView = UIStackView()
-    private lazy var dateTextField = UITextField()
-    private lazy var dateView = UIView()
-    private lazy var categoryTextField = UITextField()
-    private lazy var contentTextField = UITextField()
-    private lazy var costTextField = UITextField()
+    @IBOutlet weak var incomeExpenseSegment: UISegmentedControl!
+    @IBOutlet weak var calendarView: UIView!
+    @IBOutlet weak var lineLabel: UILabel!
     
-    let items = ["수입", "지출"]
+    @IBOutlet weak var dateTextField: UITextField!
+    @IBOutlet weak var categoryTextField: UITextField!
+    @IBOutlet weak var contentTextField: UITextField!
+    @IBOutlet weak var costTextField: UITextField!
+    
+    private lazy var dateLabel = UILabel()
+    private lazy var previousButton = UIButton()
+    private lazy var nextButton = UIButton()
+    private lazy var weekStackView = UIStackView()
+    private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+    
+    private let calendar = Calendar.current
+    private let dateFormatter = DateFormatter()
+    private var calendarDate = Date()
+    private var days = [String]()
+    
     let textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white,NSAttributedString.Key.font: UIFont(name: "SFPro-Semibold", size: 13)]
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configure()
+        self.calendarView.isHidden = true
+        self.lineLabel.isHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -42,172 +51,207 @@ class AddViewController: UIViewController {
     }
     
     private func configure() {
-        self.configureScrollView()
-        self.configureContentView()
-        self.configureTitleLabel()
-        self.configureBackButton()
         self.configureIncomeExpenseSegment()
-        self.configureTextFieldStackView()
-        self.configureDateTextField()
-        self.configureDateView()
-        self.configureCategoryTextField()
-        self.configureContentTextField()
-        self.configureCostTextField()
+        self.configureDateLabel()
+        self.configureNextButton()
+        self.configurePreviousButton()
+        self.configureWeekStackView()
+        self.configureWeekLabel()
+        self.configureCollectionView()
+        self.configureCalendar()
+        self.configureTextField()
     }
     
-    private func configureScrollView() {
-        self.view.addSubview(self.scrollView)
-        self.scrollView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            self.scrollView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor),
-            self.scrollView.leadingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.leadingAnchor),
-            self.scrollView.trailingAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.trailingAnchor),
-            self.scrollView.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor)
-        ])
-    }
-    
-    private func configureContentView() {
-        self.scrollView.addSubview(self.contentView)
-        self.contentView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            self.contentView.topAnchor.constraint(equalTo: self.scrollView.topAnchor),
-            self.contentView.leadingAnchor.constraint(equalTo: self.scrollView.leadingAnchor),
-            self.contentView.trailingAnchor.constraint(equalTo: self.scrollView.trailingAnchor),
-            self.contentView.bottomAnchor.constraint(equalTo: self.scrollView.bottomAnchor),
-            self.contentView.widthAnchor.constraint(equalTo: self.scrollView.widthAnchor)
-        ])
-    }
-    
-    private func configureTitleLabel() {
-        self.contentView.addSubview(self.titleLabel)
-        self.titleLabel.text = "가계부 입력하기"
-        self.titleLabel.textColor = .white
-        self.titleLabel.font = UIFont(name: "SFPro-Semibold", size: 17)
-        self.titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            self.titleLabel.topAnchor.constraint(equalTo: self.contentView.topAnchor),
-            self.titleLabel.centerXAnchor.constraint(equalTo: self.contentView.centerXAnchor),
-        ])
-    }
-    
-    private func configureBackButton() {
-        self.contentView.addSubview(self.backButton)
-        self.backButton.setImage(UIImage(named: "AccountBook_Back"), for: .normal)
-        self.backButton.addTarget(self, action: #selector(didBackButtonTouched), for: .touchUpInside)
-        self.backButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            self.backButton.widthAnchor.constraint(equalToConstant: 35),
-            self.backButton.heightAnchor.constraint(equalToConstant: 40),
-            self.backButton.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 10),
-            self.backButton.centerYAnchor.constraint(equalTo: self.titleLabel.centerYAnchor),
-        ])
-    }
-    
-    @objc func didBackButtonTouched(_ sender: UIButton) {
+    @IBAction func backButton_Tapped(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
     
     private func configureIncomeExpenseSegment() {
-        self.incomeExpenseSegment = UISegmentedControl(items: items)
-        self.contentView.addSubview(self.incomeExpenseSegment)
         self.incomeExpenseSegment.selectedSegmentIndex = 0
         self.incomeExpenseSegment.setTitleTextAttributes(textAttributes as [NSAttributedString.Key : Any], for: .normal)
-        self.incomeExpenseSegment.selectedSegmentTintColor = UIColor(red: 99/255, green: 99/255, blue: 102/255, alpha: 1)
-        self.incomeExpenseSegment.backgroundColor = UIColor(red: 118/255, green: 118/255, blue: 128/255, alpha: 0.24)
+//        self.incomeExpenseSegment.selectedSegmentTintColor = UIColor(red: 99/255, green: 99/255, blue: 102/255, alpha: 1)
+//        self.incomeExpenseSegment.backgroundColor = UIColor(red: 118/255, green: 118/255, blue: 128/255, alpha: 0.24)
         self.incomeExpenseSegment.addTarget(self, action: #selector(indexChanged), for: .valueChanged)
-        self.incomeExpenseSegment.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            self.incomeExpenseSegment.widthAnchor.constraint(equalToConstant: 114),
-            self.incomeExpenseSegment.heightAnchor.constraint(equalToConstant: 24),
-            self.incomeExpenseSegment.topAnchor.constraint(equalTo: self.titleLabel.bottomAnchor, constant: 30),
-            self.incomeExpenseSegment.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 16),
-        ])
     }
     
     @objc func indexChanged(_ sender: UISegmentedControl) {
-        print("\(sender.selectedSegmentIndex)")
+        switch incomeExpenseSegment.selectedSegmentIndex{
+        case 0:
+            self.calendarView.isHidden = true
+            self.lineLabel.isHidden = true
+        case 1:
+            self.calendarView.isHidden = false
+            self.lineLabel.isHidden = false
+        default:
+            break
+        }
     }
     
-    private func configureTextFieldStackView() {
-        self.contentView.addSubview(self.textfieldStackView)
-        self.textfieldStackView.axis = .vertical
-        self.textfieldStackView.alignment = .fill
-        self.textfieldStackView.distribution = .equalSpacing
-        self.textfieldStackView.spacing = 16
-        self.textfieldStackView.translatesAutoresizingMaskIntoConstraints = false
+    private func configureDateLabel() {
+        self.calendarView.addSubview(self.dateLabel)
+        self.dateLabel.text = "2024년 7월"
+        self.dateLabel.textColor = .white
+        self.dateLabel.font = UIFont(name: "SFPro-Semibold", size: 17)
+        self.dateLabel.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            self.textfieldStackView.topAnchor.constraint(equalTo: self.incomeExpenseSegment.bottomAnchor, constant: 20),
-            self.textfieldStackView.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 16),
-            self.textfieldStackView.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -16),
-            self.textfieldStackView.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor)
+            self.dateLabel.topAnchor.constraint(equalTo: self.calendarView.topAnchor, constant: 5),
+            self.dateLabel.leadingAnchor.constraint(equalTo: self.calendarView.leadingAnchor, constant: 10),
         ])
     }
     
-    private func configureDateTextField() {
-        self.textfieldStackView.addSubview(self.dateTextField)
-        self.dateTextField.layer.cornerRadius = 10
-        self.dateTextField.attributedPlaceholder = NSAttributedString(string: "   데이트", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
-        self.dateTextField.backgroundColor = UIColor(red: 44/255, green: 44/255, blue: 46/255, alpha: 1)
-        self.dateTextField.translatesAutoresizingMaskIntoConstraints = false
+    private func configurePreviousButton() {
+        self.calendarView.addSubview(self.previousButton)
+        self.previousButton.setImage(UIImage(named: "AccountBook_Previous"), for: .normal)
+        self.previousButton.addTarget(self, action: #selector(didPreviousButtonTouched), for: .touchUpInside)
+        self.previousButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            self.dateTextField.heightAnchor.constraint(equalToConstant: 44),
-            self.dateTextField.topAnchor.constraint(equalTo: self.textfieldStackView.topAnchor, constant: 0),
-            self.dateTextField.leadingAnchor.constraint(equalTo: self.textfieldStackView.leadingAnchor, constant: 0),
-            self.dateTextField.trailingAnchor.constraint(equalTo: self.textfieldStackView.trailingAnchor, constant: 0),
+            self.previousButton.widthAnchor.constraint(equalToConstant: 35),
+            self.previousButton.heightAnchor.constraint(equalToConstant: 40),
+            self.previousButton.centerYAnchor.constraint(equalTo: self.dateLabel.centerYAnchor),
+            self.previousButton.trailingAnchor.constraint(equalTo: self.nextButton.leadingAnchor, constant: -5),
         ])
     }
     
-    private func configureDateView() {
-        self.textfieldStackView.addSubview(self.dateView)
-        self.dateView.backgroundColor = .white
-        self.dateView.translatesAutoresizingMaskIntoConstraints = false
+    private func configureNextButton() {
+        self.calendarView.addSubview(self.nextButton)
+        self.nextButton.setImage(UIImage(named: "AccountBook_Next"), for: .normal)
+        self.nextButton.addTarget(self, action: #selector(didNextButtonTouched), for: .touchUpInside)
+        self.nextButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            self.dateView.heightAnchor.constraint(equalToConstant: 340),
-            self.dateView.topAnchor.constraint(equalTo: self.dateTextField.bottomAnchor, constant: 8),
-            self.dateView.leadingAnchor.constraint(equalTo: self.textfieldStackView.leadingAnchor, constant: 0),
-            self.dateView.trailingAnchor.constraint(equalTo: self.textfieldStackView.trailingAnchor, constant: 0),
+            self.nextButton.widthAnchor.constraint(equalToConstant: 35),
+            self.nextButton.heightAnchor.constraint(equalToConstant: 40),
+            self.nextButton.centerYAnchor.constraint(equalTo: self.dateLabel.centerYAnchor),
+            self.nextButton.trailingAnchor.constraint(equalTo: self.calendarView.trailingAnchor),
         ])
     }
     
-    private func configureCategoryTextField() {
-        self.textfieldStackView.addSubview(self.categoryTextField)
-        self.categoryTextField.layer.cornerRadius = 10
-        self.categoryTextField.attributedPlaceholder = NSAttributedString(string: "   카테고리", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
-        self.categoryTextField.backgroundColor = UIColor(red: 44/255, green: 44/255, blue: 46/255, alpha: 1)
-        self.categoryTextField.translatesAutoresizingMaskIntoConstraints = false
+    private func configureWeekStackView() {
+        self.calendarView.addSubview(self.weekStackView)
+        self.weekStackView.distribution = .fillEqually
+        self.weekStackView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            self.categoryTextField.heightAnchor.constraint(equalToConstant: 44),
-            self.categoryTextField.topAnchor.constraint(equalTo: self.dateView.bottomAnchor, constant: 8),
-            self.categoryTextField.leadingAnchor.constraint(equalTo: self.textfieldStackView.leadingAnchor, constant: 0),
-            self.categoryTextField.trailingAnchor.constraint(equalTo: self.textfieldStackView.trailingAnchor, constant: 0),
+            self.weekStackView.topAnchor.constraint(equalTo: self.dateLabel.bottomAnchor, constant: 20),
+            self.weekStackView.leadingAnchor.constraint(equalTo: self.calendarView.leadingAnchor, constant: 8),
+            self.weekStackView.trailingAnchor.constraint(equalTo: self.calendarView.trailingAnchor, constant: -8)
         ])
     }
     
-    private func configureContentTextField() {
-        self.textfieldStackView.addSubview(self.contentTextField)
-        self.contentTextField.layer.cornerRadius = 10
-        self.contentTextField.attributedPlaceholder = NSAttributedString(string: "   내용", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
-        self.contentTextField.backgroundColor = UIColor(red: 44/255, green: 44/255, blue: 46/255, alpha: 1)
-        self.contentTextField.translatesAutoresizingMaskIntoConstraints = false
+    private func configureWeekLabel() {
+        let dayOfTheWeek = ["일", "월", "화", "수", "목", "금", "토"]
+        
+        for i in 0..<7 {
+            let label = UILabel()
+            label.text = dayOfTheWeek[i]
+            label.textAlignment = .center
+            label.font = UIFont(name: "SFPro-Semibold", size: 17)
+            self.weekStackView.addArrangedSubview(label)
+            
+            if i == 0 {
+                label.textColor = .white
+            } else if i == 6 {
+                label.textColor = .white
+            } else {
+                label.textColor = .white
+            }
+        }
+    }
+    
+    private func configureCollectionView() {
+        self.calendarView.addSubview(self.collectionView)
+        self.collectionView.backgroundColor = .clear
+        self.collectionView.dataSource = self
+        self.collectionView.delegate = self
+        self.collectionView.register(AddCalendarCollectionViewCell.self, forCellWithReuseIdentifier: AddCalendarCollectionViewCell.identifier)
+        self.collectionView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            self.contentTextField.heightAnchor.constraint(equalToConstant: 44),
-            self.contentTextField.topAnchor.constraint(equalTo: self.categoryTextField.bottomAnchor, constant: 16),
-            self.contentTextField.leadingAnchor.constraint(equalTo: self.textfieldStackView.leadingAnchor, constant: 0),
-            self.contentTextField.trailingAnchor.constraint(equalTo: self.textfieldStackView.trailingAnchor, constant: 0),
+            self.collectionView.topAnchor.constraint(equalTo: self.weekStackView.bottomAnchor, constant: 10),
+            self.collectionView.leadingAnchor.constraint(equalTo: self.calendarView.leadingAnchor, constant: 8),
+            self.collectionView.trailingAnchor.constraint(equalTo: self.calendarView.trailingAnchor, constant: -8),
+            self.collectionView.bottomAnchor.constraint(equalTo: self.calendarView.bottomAnchor)
         ])
     }
     
-    private func configureCostTextField() {
-        self.textfieldStackView.addSubview(self.costTextField)
-        self.costTextField.layer.cornerRadius = 10
-        self.costTextField.attributedPlaceholder = NSAttributedString(string: "   금액", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
-        self.costTextField.backgroundColor = UIColor(red: 44/255, green: 44/255, blue: 46/255, alpha: 1)
-        self.costTextField.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            self.costTextField.heightAnchor.constraint(equalToConstant: 44),
-            self.costTextField.topAnchor.constraint(equalTo: self.contentTextField.bottomAnchor, constant: 16),
-            self.costTextField.leadingAnchor.constraint(equalTo: self.textfieldStackView.leadingAnchor, constant: 0),
-            self.costTextField.trailingAnchor.constraint(equalTo: self.textfieldStackView.trailingAnchor, constant: 0),
-        ])
+    private func configureCalendar() {
+        let components = self.calendar.dateComponents([.year, .month], from: Date())
+        self.calendarDate = self.calendar.date(from: components) ?? Date()
+        self.dateFormatter.dateFormat = "yyyy년 MM월"
+        self.updateCalendar()
+    }
+    
+    private func startDayOfTheWeek() -> Int {
+        return self.calendar.component(.weekday, from: self.calendarDate) - 1
+    }
+    
+    private func endDate() -> Int {
+        return self.calendar.range(of: .day, in: .month, for: self.calendarDate)?.count ?? Int()
+    }
+    
+    private func updateTitle(){
+        let date = self.dateFormatter.string(from: self.calendarDate)
+        self.dateLabel.text = date
+    }
+    
+    private func updateDays(){
+        self.days.removeAll()
+        let startDayOfTheWeek = self.startDayOfTheWeek()
+        let totalDays = startDayOfTheWeek + self.endDate()
+        
+        for day in Int()..<totalDays {
+            if day < startDayOfTheWeek {
+                self.days.append("")
+                continue
+            }
+            self.days.append("\(day - startDayOfTheWeek + 1)")
+        }
+        
+        self.collectionView.reloadData()
+    }
+    
+    private func updateCalendar() {
+        self.updateTitle()
+        self.updateDays()
+    }
+    
+    private func minusMonth(){
+        self.calendarDate = self.calendar.date(byAdding: DateComponents(month: -1), to: self.calendarDate) ?? Date()
+        self.updateCalendar()
+    }
+    
+    private func plusMonth(){
+        self.calendarDate = self.calendar.date(byAdding: DateComponents(month: 1), to: self.calendarDate) ?? Date()
+        self.updateCalendar()
+    }
+    
+    @objc private func didPreviousButtonTouched(_ sender: UIButton) {
+        self.minusMonth()
+    }
+    
+    @objc private func didNextButtonTouched(_ sender: UIButton) {
+        self.plusMonth()
+    }
+    
+    private func configureTextField() {
+    }
+}
+
+extension AddViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.days.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AddCalendarCollectionViewCell.identifier, for: indexPath) as? AddCalendarCollectionViewCell else { return UICollectionViewCell() }
+        cell.updateDay(day: self.days[indexPath.item])
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width = self.weekStackView.frame.width / 7
+        return CGSize(width: width, height: width * 0.8)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return .zero
     }
 }
