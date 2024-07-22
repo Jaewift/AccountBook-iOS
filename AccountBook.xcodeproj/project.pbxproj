@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		73BF07F2DDEF521803EBF3CB /* Pods_AccountBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F2428EC570C675EE2035FCB /* Pods_AccountBook.framework */; };
+		C7063B702C4E620D00CFF3CE /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7063B6F2C4E620D00CFF3CE /* DetailTableViewCell.swift */; };
 		C763DFB42C3FF6FF00D6201E /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C763DFB32C3FF6FF00D6201E /* DetailViewController.swift */; };
 		C7934F902C3D12A3003B3245 /* CalendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7934F8F2C3D12A3003B3245 /* CalendarCollectionViewCell.swift */; };
 		C7A027B42C3F960A003C28BA /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A027B32C3F960A003C28BA /* AddViewController.swift */; };
@@ -16,11 +18,22 @@
 		C7A48BA72C3BDA420013304A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7A48BA52C3BDA420013304A /* Main.storyboard */; };
 		C7A48BA92C3BDA440013304A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C7A48BA82C3BDA440013304A /* Assets.xcassets */; };
 		C7A48BAC2C3BDA440013304A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7A48BAA2C3BDA440013304A /* LaunchScreen.storyboard */; };
+		C7CD8D942C4EAFC500A34028 /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CD8D932C4EAFC500A34028 /* APIConstants.swift */; };
+		C7CD8D962C4EB1BD00A34028 /* NetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CD8D952C4EB1BD00A34028 /* NetworkResult.swift */; };
+		C7CD8D982C4EB22100A34028 /* ViewAllService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CD8D972C4EB22100A34028 /* ViewAllService.swift */; };
+		C7CD8D9B2C4EB30400A34028 /* ViewAllModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CD8D9A2C4EB30400A34028 /* ViewAllModel.swift */; };
+		C7CD8D9D2C4EB9A000A34028 /* ViewDetailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CD8D9C2C4EB9A000A34028 /* ViewDetailService.swift */; };
+		C7CD8D9F2C4EBA0B00A34028 /* ViewDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CD8D9E2C4EBA0B00A34028 /* ViewDetailModel.swift */; };
+		C7CD8DA12C4EBB1600A34028 /* EnrollService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CD8DA02C4EBB1600A34028 /* EnrollService.swift */; };
+		C7CD8DA32C4EBB2F00A34028 /* EnrollModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7CD8DA22C4EBB2F00A34028 /* EnrollModel.swift */; };
 		C7DADE572C3C4BD4003137D8 /* SF-Pro.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C7DADE552C3C4BD4003137D8 /* SF-Pro.ttf */; };
 		C7E819C32C42580600F4C39B /* AddCalendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7E819C22C42580600F4C39B /* AddCalendarCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4F2428EC570C675EE2035FCB /* Pods_AccountBook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AccountBook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		674BE95C3081945BCBE85B1F /* Pods-AccountBook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AccountBook.release.xcconfig"; path = "Target Support Files/Pods-AccountBook/Pods-AccountBook.release.xcconfig"; sourceTree = "<group>"; };
+		C7063B6F2C4E620D00CFF3CE /* DetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
 		C763DFB32C3FF6FF00D6201E /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		C7934F8F2C3D12A3003B3245 /* CalendarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCollectionViewCell.swift; sourceTree = "<group>"; };
 		C7A027B32C3F960A003C28BA /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
@@ -32,8 +45,17 @@
 		C7A48BA82C3BDA440013304A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C7A48BAB2C3BDA440013304A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C7A48BAD2C3BDA440013304A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C7CD8D932C4EAFC500A34028 /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
+		C7CD8D952C4EB1BD00A34028 /* NetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
+		C7CD8D972C4EB22100A34028 /* ViewAllService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewAllService.swift; sourceTree = "<group>"; };
+		C7CD8D9A2C4EB30400A34028 /* ViewAllModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewAllModel.swift; sourceTree = "<group>"; };
+		C7CD8D9C2C4EB9A000A34028 /* ViewDetailService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewDetailService.swift; sourceTree = "<group>"; };
+		C7CD8D9E2C4EBA0B00A34028 /* ViewDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewDetailModel.swift; sourceTree = "<group>"; };
+		C7CD8DA02C4EBB1600A34028 /* EnrollService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnrollService.swift; sourceTree = "<group>"; };
+		C7CD8DA22C4EBB2F00A34028 /* EnrollModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnrollModel.swift; sourceTree = "<group>"; };
 		C7DADE552C3C4BD4003137D8 /* SF-Pro.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-Pro.ttf"; path = "../../../../../../../Library/Fonts/SF-Pro.ttf"; sourceTree = "<group>"; };
 		C7E819C22C42580600F4C39B /* AddCalendarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCalendarCollectionViewCell.swift; sourceTree = "<group>"; };
+		F0353418966A443E58CAF4E1 /* Pods-AccountBook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AccountBook.debug.xcconfig"; path = "Target Support Files/Pods-AccountBook/Pods-AccountBook.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,17 +63,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				73BF07F2DDEF521803EBF3CB /* Pods_AccountBook.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		37DB7B9FBC5BCB70A005B9D2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4F2428EC570C675EE2035FCB /* Pods_AccountBook.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C767893918ADA5500C28B36F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F0353418966A443E58CAF4E1 /* Pods-AccountBook.debug.xcconfig */,
+				674BE95C3081945BCBE85B1F /* Pods-AccountBook.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		C7A48B932C3BDA420013304A = {
 			isa = PBXGroup;
 			children = (
 				C7A48B9E2C3BDA420013304A /* AccountBook */,
 				C7A48B9D2C3BDA420013304A /* Products */,
+				C767893918ADA5500C28B36F /* Pods */,
+				37DB7B9FBC5BCB70A005B9D2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -66,6 +108,8 @@
 		C7A48B9E2C3BDA420013304A /* AccountBook */ = {
 			isa = PBXGroup;
 			children = (
+				C7CD8D992C4EB2F500A34028 /* Model */,
+				C7CD8D922C4EAFB000A34028 /* Network */,
 				C7DADE542C3C4BC8003137D8 /* Font */,
 				C7A48B9F2C3BDA420013304A /* AppDelegate.swift */,
 				C7A48BA12C3BDA420013304A /* SceneDelegate.swift */,
@@ -78,8 +122,31 @@
 				C7A027B32C3F960A003C28BA /* AddViewController.swift */,
 				C763DFB32C3FF6FF00D6201E /* DetailViewController.swift */,
 				C7E819C22C42580600F4C39B /* AddCalendarCollectionViewCell.swift */,
+				C7063B6F2C4E620D00CFF3CE /* DetailTableViewCell.swift */,
 			);
 			path = AccountBook;
+			sourceTree = "<group>";
+		};
+		C7CD8D922C4EAFB000A34028 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				C7CD8D932C4EAFC500A34028 /* APIConstants.swift */,
+				C7CD8D952C4EB1BD00A34028 /* NetworkResult.swift */,
+				C7CD8D972C4EB22100A34028 /* ViewAllService.swift */,
+				C7CD8D9C2C4EB9A000A34028 /* ViewDetailService.swift */,
+				C7CD8DA02C4EBB1600A34028 /* EnrollService.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		C7CD8D992C4EB2F500A34028 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				C7CD8D9A2C4EB30400A34028 /* ViewAllModel.swift */,
+				C7CD8D9E2C4EBA0B00A34028 /* ViewDetailModel.swift */,
+				C7CD8DA22C4EBB2F00A34028 /* EnrollModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		C7DADE542C3C4BC8003137D8 /* Font */ = {
@@ -97,9 +164,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C7A48BB02C3BDA440013304A /* Build configuration list for PBXNativeTarget "AccountBook" */;
 			buildPhases = (
+				2C1EC9CDF204D5539C1FCA06 /* [CP] Check Pods Manifest.lock */,
 				C7A48B982C3BDA420013304A /* Sources */,
 				C7A48B992C3BDA420013304A /* Frameworks */,
 				C7A48B9A2C3BDA420013304A /* Resources */,
+				8166F78E6508500F17639A31 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -157,18 +226,69 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2C1EC9CDF204D5539C1FCA06 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AccountBook-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8166F78E6508500F17639A31 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AccountBook/Pods-AccountBook-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AccountBook/Pods-AccountBook-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AccountBook/Pods-AccountBook-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		C7A48B982C3BDA420013304A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				C7A027B42C3F960A003C28BA /* AddViewController.swift in Sources */,
+				C7CD8D962C4EB1BD00A34028 /* NetworkResult.swift in Sources */,
 				C7E819C32C42580600F4C39B /* AddCalendarCollectionViewCell.swift in Sources */,
+				C7063B702C4E620D00CFF3CE /* DetailTableViewCell.swift in Sources */,
 				C7934F902C3D12A3003B3245 /* CalendarCollectionViewCell.swift in Sources */,
 				C7A48BA42C3BDA420013304A /* ViewController.swift in Sources */,
+				C7CD8D982C4EB22100A34028 /* ViewAllService.swift in Sources */,
+				C7CD8D942C4EAFC500A34028 /* APIConstants.swift in Sources */,
 				C763DFB42C3FF6FF00D6201E /* DetailViewController.swift in Sources */,
+				C7CD8DA32C4EBB2F00A34028 /* EnrollModel.swift in Sources */,
 				C7A48BA02C3BDA420013304A /* AppDelegate.swift in Sources */,
+				C7CD8D9B2C4EB30400A34028 /* ViewAllModel.swift in Sources */,
+				C7CD8D9D2C4EB9A000A34028 /* ViewDetailService.swift in Sources */,
+				C7CD8DA12C4EBB1600A34028 /* EnrollService.swift in Sources */,
 				C7A48BA22C3BDA420013304A /* SceneDelegate.swift in Sources */,
+				C7CD8D9F2C4EBA0B00A34028 /* ViewDetailModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,6 +435,7 @@
 		};
 		C7A48BB12C3BDA440013304A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F0353418966A443E58CAF4E1 /* Pods-AccountBook.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -343,6 +464,7 @@
 		};
 		C7A48BB22C3BDA440013304A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 674BE95C3081945BCBE85B1F /* Pods-AccountBook.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

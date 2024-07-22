@@ -27,6 +27,16 @@ class AddCalendarCollectionViewCell: UICollectionViewCell {
         self.dayLabel.text = nil
     }
     
+    override var isSelected: Bool {
+      didSet {
+        if isSelected {
+            dayLabel.textColor = UIColor(red: 43/255, green: 217/255, blue: 104/255, alpha: 1)
+        } else {
+            dayLabel.textColor = .white
+        }
+      }
+    }
+    
     private func configureDay() {
         self.addSubview(self.dayLabel)
         self.dayLabel.textColor = .white

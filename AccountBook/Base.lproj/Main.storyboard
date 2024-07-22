@@ -39,13 +39,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7월 14일 일요일" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Cq-2w-OsJ">
-                                <rect key="frame" x="141.33333333333334" y="59.000000000000007" width="110.33333333333334" height="20.333333333333336"/>
+                                <rect key="frame" x="141.33333333333334" y="59" width="110.33333333333334" height="20"/>
                                 <fontDescription key="fontDescription" name="SFPro-Semibold" family="SF Pro" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K4z-nI-xM2">
-                                <rect key="frame" x="10" y="49.333333333333343" width="35" height="40"/>
+                                <rect key="frame" x="10" y="49" width="35" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="35" id="fV0-yh-8XI"/>
                                     <constraint firstAttribute="height" constant="40" id="vfW-HT-h1e"/>
@@ -57,7 +57,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y6Z-5r-nCK">
-                                <rect key="frame" x="343" y="49.333333333333343" width="40" height="40"/>
+                                <rect key="frame" x="343" y="49" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="CtN-EK-86o"/>
                                     <constraint firstAttribute="height" constant="40" id="Iab-lz-QVr"/>
@@ -66,10 +66,10 @@
                                 <buttonConfiguration key="configuration" style="plain" image="AccountBook_Add"/>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="jSx-mZ-e1i">
-                                <rect key="frame" x="0.0" y="110.33333333333331" width="393" height="741.66666666666674"/>
+                                <rect key="frame" x="0.0" y="110" width="393" height="742"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="60" id="qgk-Js-64B">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Detail_TableViewCell" rowHeight="60" id="qgk-Js-64B" customClass="DetailTableViewCell" customModule="AccountBook" customModuleProvider="target">
                                         <rect key="frame" x="20" y="55.333332061767578" width="353" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qgk-Js-64B" id="3JY-pV-PwS">
@@ -77,19 +77,19 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="엄마용돈" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aA9-z4-V1D">
-                                                    <rect key="frame" x="16" y="10" width="59" height="21"/>
+                                                    <rect key="frame" x="16" y="10" width="59" height="20"/>
                                                     <fontDescription key="fontDescription" name="SFPro-Regular" family="SF Pro" pointSize="17"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="용돈" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BcA-z1-lrW">
-                                                    <rect key="frame" x="16" y="34" width="21" height="15"/>
+                                                    <rect key="frame" x="16" y="33" width="21" height="14"/>
                                                     <fontDescription key="fontDescription" name="SFPro-Regular" family="SF Pro" pointSize="12"/>
                                                     <color key="textColor" red="0.62368756530000002" green="0.62310129400000003" blue="0.64314001799999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+20,000" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xRt-Bl-eM1">
-                                                    <rect key="frame" x="272.33333333333331" y="19.666666666666668" width="64.666666666666686" height="21.000000000000004"/>
+                                                    <rect key="frame" x="272.33333333333331" y="20" width="64.666666666666686" height="20"/>
                                                     <fontDescription key="fontDescription" name="SFPro-Regular" family="SF Pro" pointSize="17"/>
                                                     <color key="textColor" red="0.45924466850000001" green="0.93571168179999997" blue="0.50580185649999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     <nil key="highlightedColor"/>
@@ -171,7 +171,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="Ml9-fB-0aW">
                                 <rect key="frame" x="16" y="158.33333333333337" width="361" height="383"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="  날짜" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kGC-Gd-FcY">
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="  날짜" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kGC-Gd-FcY">
                                         <rect key="frame" x="0.0" y="0.0" width="361" height="44"/>
                                         <color key="backgroundColor" red="0.1726125181" green="0.17237710949999999" blue="0.1803931892" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>
@@ -208,7 +208,7 @@
                                 <fontDescription key="fontDescription" name="SFPro-Regular" family="SF Pro" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="  카테고리" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cWa-qR-zL3">
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="  카테고리" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cWa-qR-zL3">
                                 <rect key="frame" x="16" y="557.33333333333337" width="361" height="44"/>
                                 <color key="backgroundColor" red="0.1726125181" green="0.17237710949999999" blue="0.1803931892" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
@@ -228,7 +228,7 @@
                                 <fontDescription key="fontDescription" name="SFPro-Regular" family="SF Pro" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="  내용" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="k3N-ls-N7T">
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="  내용" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="k3N-ls-N7T">
                                 <rect key="frame" x="16" y="617.33333333333337" width="361" height="44"/>
                                 <color key="backgroundColor" red="0.1726125181" green="0.17237710949999999" blue="0.1803931892" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
@@ -248,7 +248,7 @@
                                 <fontDescription key="fontDescription" name="SFPro-Regular" family="SF Pro" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="  금액" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0qV-XZ-8tM">
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="  금액" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0qV-XZ-8tM">
                                 <rect key="frame" x="16" y="677.33333333333337" width="361" height="44"/>
                                 <color key="backgroundColor" red="0.1726125181" green="0.17237710949999999" blue="0.1803931892" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
@@ -290,6 +290,18 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KHl-Fl-v8i">
+                                <rect key="frame" x="329" y="158.33333333333334" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="44" id="LGO-uo-C0Q"/>
+                                    <constraint firstAttribute="height" constant="44" id="nTA-T4-w6q"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="AccountBook_Date"/>
+                                <connections>
+                                    <action selector="Date_Tapped:" destination="haZ-dJ-iEz" eventType="touchUpInside" id="T0n-jm-846"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ZMw-HI-nqo"/>
                         <color key="backgroundColor" name="Background"/>
@@ -298,6 +310,7 @@
                             <constraint firstItem="WDv-Oe-nQL" firstAttribute="top" secondItem="k3N-ls-N7T" secondAttribute="bottom" constant="16" id="1CA-WC-1CD"/>
                             <constraint firstItem="ZMw-HI-nqo" firstAttribute="trailing" secondItem="0fY-sd-mCx" secondAttribute="trailing" constant="16" id="4sS-A9-PoP"/>
                             <constraint firstItem="hwe-GQ-rLt" firstAttribute="top" secondItem="ZMw-HI-nqo" secondAttribute="top" id="5Xe-9Z-Ssd"/>
+                            <constraint firstItem="KHl-Fl-v8i" firstAttribute="top" secondItem="cYX-De-sqz" secondAttribute="bottom" constant="15" id="5e8-no-KbS"/>
                             <constraint firstItem="Ml9-fB-0aW" firstAttribute="top" secondItem="cYX-De-sqz" secondAttribute="bottom" constant="15" id="6Le-zi-x0x"/>
                             <constraint firstItem="ZMw-HI-nqo" firstAttribute="trailing" secondItem="WDv-Oe-nQL" secondAttribute="trailing" constant="16" id="8mM-cI-0hh"/>
                             <constraint firstItem="Ml9-fB-0aW" firstAttribute="leading" secondItem="ZMw-HI-nqo" secondAttribute="leading" constant="16" id="8ph-D1-fGz"/>
@@ -315,6 +328,7 @@
                             <constraint firstItem="EnP-e6-lW5" firstAttribute="leading" secondItem="ZMw-HI-nqo" secondAttribute="leading" constant="120" id="SZC-N6-VBF"/>
                             <constraint firstItem="w7T-A7-1xp" firstAttribute="top" secondItem="0qV-XZ-8tM" secondAttribute="bottom" constant="22" id="Tzg-tS-rQc"/>
                             <constraint firstItem="ZMw-HI-nqo" firstAttribute="trailing" secondItem="EnP-e6-lW5" secondAttribute="trailing" constant="16" id="ULf-kl-Dwa"/>
+                            <constraint firstItem="ZMw-HI-nqo" firstAttribute="trailing" secondItem="KHl-Fl-v8i" secondAttribute="trailing" constant="20" id="Wdn-cZ-0sK"/>
                             <constraint firstItem="cWa-qR-zL3" firstAttribute="leading" secondItem="ZMw-HI-nqo" secondAttribute="leading" constant="16" id="WlR-Yn-STm"/>
                             <constraint firstItem="hwe-GQ-rLt" firstAttribute="centerX" secondItem="ZG5-cK-J8w" secondAttribute="centerX" id="Wuw-7W-PoW"/>
                             <constraint firstItem="pDC-Nf-ck6" firstAttribute="centerY" secondItem="hwe-GQ-rLt" secondAttribute="centerY" id="ZMk-B7-EHg"/>
@@ -367,6 +381,7 @@
     <resources>
         <image name="AccountBook_Add" width="23" height="22"/>
         <image name="AccountBook_Back" width="36" height="44"/>
+        <image name="AccountBook_Date" width="17" height="15.5"/>
         <namedColor name="Background">
             <color red="0.10980392156862745" green="0.10980392156862745" blue="0.11764705882352941" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

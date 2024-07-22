@@ -7,6 +7,11 @@
 
 import UIKit
 
+enum IncomeExpense: Int{
+    case Income
+    case Expense
+}
+
 class AddViewController: UIViewController {
     
     @IBOutlet weak var incomeExpenseSegment: UISegmentedControl!
@@ -29,6 +34,8 @@ class AddViewController: UIViewController {
     private var calendarDate = Date()
     private var days = [String]()
     
+    var incomeOrExpense: Int = 0
+    
     let textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white,NSAttributedString.Key.font: UIFont(name: "SFPro-Semibold", size: 13)]
 
     override func viewDidLoad() {
@@ -36,6 +43,8 @@ class AddViewController: UIViewController {
         self.configure()
         self.calendarView.isHidden = true
         self.lineLabel.isHidden = true
+        
+        self.dateTextField.isEnabled = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -59,7 +68,6 @@ class AddViewController: UIViewController {
         self.configureWeekLabel()
         self.configureCollectionView()
         self.configureCalendar()
-        self.configureTextField()
     }
     
     @IBAction func backButton_Tapped(_ sender: Any) {
@@ -69,19 +77,15 @@ class AddViewController: UIViewController {
     private func configureIncomeExpenseSegment() {
         self.incomeExpenseSegment.selectedSegmentIndex = 0
         self.incomeExpenseSegment.setTitleTextAttributes(textAttributes as [NSAttributedString.Key : Any], for: .normal)
-//        self.incomeExpenseSegment.selectedSegmentTintColor = UIColor(red: 99/255, green: 99/255, blue: 102/255, alpha: 1)
-//        self.incomeExpenseSegment.backgroundColor = UIColor(red: 118/255, green: 118/255, blue: 128/255, alpha: 0.24)
         self.incomeExpenseSegment.addTarget(self, action: #selector(indexChanged), for: .valueChanged)
     }
     
     @objc func indexChanged(_ sender: UISegmentedControl) {
         switch incomeExpenseSegment.selectedSegmentIndex{
         case 0:
-            self.calendarView.isHidden = true
-            self.lineLabel.isHidden = true
+            self.incomeOrExpense = IncomeExpense.Income.rawValue
         case 1:
-            self.calendarView.isHidden = false
-            self.lineLabel.isHidden = false
+            self.incomeOrExpense = IncomeExpense.Expense.rawValue
         default:
             break
         }
@@ -230,11 +234,18 @@ class AddViewController: UIViewController {
         self.plusMonth()
     }
     
-    private func configureTextField() {
+    @IBAction func Date_Tapped(_ sender: Any) {
+        self.calendarView.isHidden = false
+        self.lineLabel.isHidden = false
     }
 }
 
 extension AddViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let date = self.dateFormatter.string(from: self.calendarDate)
+        dateTextField.text = "\(date) \(days[indexPath.item])일"
+        
+    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.days.count
