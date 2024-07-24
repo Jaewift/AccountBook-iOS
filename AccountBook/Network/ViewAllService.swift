@@ -13,7 +13,7 @@ class ViewAllService {
     static let shared = ViewAllService()
     private init() {}
     
-    func getNewShop(year: Int, month: Int, completion: @escaping (NetworkResult<Any>) -> Void) {
+    func getViewAll(year: Int, month: Int, completion: @escaping (NetworkResult<Any>) -> Void) {
         let url: String! = APIConstants.enrollURL + "/\(year)/\(month)"
         let header: HTTPHeaders = ["Content-type": "application/json"]
         

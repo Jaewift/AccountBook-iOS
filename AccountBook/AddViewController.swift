@@ -31,8 +31,12 @@ class AddViewController: UIViewController {
     
     private let calendar = Calendar.current
     private let dateFormatter = DateFormatter()
+    private let postDateFormatter = DateFormatter()
     private var calendarDate = Date()
     private var days = [String]()
+    private var postdateData: String = ""
+    
+    private var enrollData: EnrollResultModel!
     
     var incomeOrExpense: Int = 0
     
@@ -179,6 +183,7 @@ class AddViewController: UIViewController {
         let components = self.calendar.dateComponents([.year, .month], from: Date())
         self.calendarDate = self.calendar.date(from: components) ?? Date()
         self.dateFormatter.dateFormat = "yyyy년 MM월"
+        self.postDateFormatter.dateFormat = "yyyy-MM"
         self.updateCalendar()
     }
     
@@ -212,8 +217,8 @@ class AddViewController: UIViewController {
     }
     
     private func updateCalendar() {
-        self.updateTitle()
         self.updateDays()
+        self.updateTitle()
     }
     
     private func minusMonth(){
@@ -238,13 +243,19 @@ class AddViewController: UIViewController {
         self.calendarView.isHidden = false
         self.lineLabel.isHidden = false
     }
+    
+    @IBAction func Enroll_Tapped(_ sender: Any) {
+        let parameterDatas = EnrollModel(date: postdateData, type: self.incomeOrExpense, category: categoryTextField.text ?? "", price: Int(costTextField.text ?? "") ?? 0, content: contentTextField.text ?? "")
+        APIEnrollPost.instance.SendingPostEnroll(parameters: parameterDatas) { result in self.enrollData = result }
+    }
 }
 
 extension AddViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let date = self.dateFormatter.string(from: self.calendarDate)
+        let postDate = self.postDateFormatter.string(from: self.calendarDate)
         dateTextField.text = "\(date) \(days[indexPath.item])일"
-        
+        postdateData = "\(postDate)-\(days[indexPath.item])"
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

@@ -54,6 +54,7 @@
                                 <buttonConfiguration key="configuration" style="plain" image="AccountBook_Back"/>
                                 <connections>
                                     <action selector="backButton_Tapped:" destination="haZ-dJ-iEz" eventType="touchUpInside" id="VAG-6x-Vn2"/>
+                                    <action selector="back_Tapped:" destination="SlI-zm-OCk" eventType="touchUpInside" id="5K1-cK-6si"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y6Z-5r-nCK">
@@ -105,6 +106,11 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.1726125181" green="0.17237710949999999" blue="0.1803931892" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <connections>
+                                            <outlet property="categoryLabel" destination="BcA-z1-lrW" id="105-ab-NVe"/>
+                                            <outlet property="contentLabel" destination="aA9-z4-V1D" id="xKq-1g-BBN"/>
+                                            <outlet property="priceLabel" destination="xRt-Bl-eM1" id="Btv-4e-hZL"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -124,6 +130,10 @@
                             <constraint firstItem="g4a-5x-eTR" firstAttribute="trailing" secondItem="jSx-mZ-e1i" secondAttribute="trailing" id="uJN-Js-dUD"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="DetailTV" destination="jSx-mZ-e1i" id="5Wq-IW-1uV"/>
+                        <outlet property="titleLabel" destination="9Cq-2w-OsJ" id="p5r-eb-eYO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vMO-Vw-pAE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -166,6 +176,7 @@
                                 <buttonConfiguration key="configuration" style="plain" image="AccountBook_Back"/>
                                 <connections>
                                     <action selector="backButton_Tapped:" destination="haZ-dJ-iEz" eventType="touchUpInside" id="KSd-sK-2OB"/>
+                                    <action selector="back_Tapped:" destination="aVu-Jf-98q" eventType="touchUpInside" id="InN-kM-Qmi"/>
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="Ml9-fB-0aW">
@@ -279,6 +290,9 @@
                                     <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <color key="baseBackgroundColor" red="0.34948098659999999" green="0.75815927979999997" blue="0.39993232490000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </buttonConfiguration>
+                                <connections>
+                                    <action selector="Enroll_Tapped:" destination="haZ-dJ-iEz" eventType="touchUpInside" id="s0g-3L-xtL"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nMr-f7-e85">
                                 <rect key="frame" x="16" y="541.33333333333337" width="361" height="1"/>
@@ -357,6 +371,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RFl-rO-VTR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="aVu-Jf-98q" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1554.9618320610687" y="3.5211267605633805"/>
         </scene>

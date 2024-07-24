@@ -30,6 +30,7 @@ final class ViewController: UIViewController {
     private let dateFormatter = DateFormatter()
     private var calendarDate = Date()
     private var days = [String]()
+    private var selectDay: String = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -361,7 +362,21 @@ final class ViewController: UIViewController {
 extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
+        guard let nextVC = self.storyboard?.instantiateViewController(withIdentifier: "DetailVC") as? DetailViewController else { return }
+        
+        let monthLabel = titleLabel.text!
+        let day = days[indexPath.item]
+        
+        if titleLabel.text?.count == 8 {
+            let month = monthLabel[String.Index(encodedOffset: 6)]
+            nextVC.dateLabel = "\(month)월 \(day)일"
+        } else {
+            let month = monthLabel[String.Index(encodedOffset: 6)]
+            let month2 = monthLabel[String.Index(encodedOffset: 7)]
+            nextVC.dateLabel = "\(month)\(month2)월 \(day)일"
+        }
+        
+        self.navigationController?.pushViewController(nextVC, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

@@ -13,7 +13,7 @@ class ViewDetailService {
     static let shared = ViewDetailService()
     private init() {}
     
-    func getNewShop(year: Int, month: Int, day: Int, completion: @escaping (NetworkResult<Any>) -> Void) {
+    func getViewDetail(year: Int, month: Int, day: Int, completion: @escaping (NetworkResult<Any>) -> Void) {
         let url: String! = APIConstants.enrollURL + "/\(year)/\(month)/\(day)"
         let header: HTTPHeaders = ["Content-type": "application/json"]
         

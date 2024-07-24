@@ -10,6 +10,10 @@
 		73BF07F2DDEF521803EBF3CB /* Pods_AccountBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F2428EC570C675EE2035FCB /* Pods_AccountBook.framework */; };
 		C7063B702C4E620D00CFF3CE /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7063B6F2C4E620D00CFF3CE /* DetailTableViewCell.swift */; };
 		C763DFB42C3FF6FF00D6201E /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C763DFB32C3FF6FF00D6201E /* DetailViewController.swift */; };
+		C78843312C4F65E2008B8C8D /* ModifyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78843302C4F65E2008B8C8D /* ModifyService.swift */; };
+		C78843332C4F65EC008B8C8D /* DeleteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78843322C4F65EC008B8C8D /* DeleteService.swift */; };
+		C78843352C4F672E008B8C8D /* ModifyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78843342C4F672E008B8C8D /* ModifyModel.swift */; };
+		C78843372C4F673A008B8C8D /* DeleteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C78843362C4F673A008B8C8D /* DeleteModel.swift */; };
 		C7934F902C3D12A3003B3245 /* CalendarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7934F8F2C3D12A3003B3245 /* CalendarCollectionViewCell.swift */; };
 		C7A027B42C3F960A003C28BA /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A027B32C3F960A003C28BA /* AddViewController.swift */; };
 		C7A48BA02C3BDA420013304A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A48B9F2C3BDA420013304A /* AppDelegate.swift */; };
@@ -35,6 +39,10 @@
 		674BE95C3081945BCBE85B1F /* Pods-AccountBook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AccountBook.release.xcconfig"; path = "Target Support Files/Pods-AccountBook/Pods-AccountBook.release.xcconfig"; sourceTree = "<group>"; };
 		C7063B6F2C4E620D00CFF3CE /* DetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
 		C763DFB32C3FF6FF00D6201E /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		C78843302C4F65E2008B8C8D /* ModifyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyService.swift; sourceTree = "<group>"; };
+		C78843322C4F65EC008B8C8D /* DeleteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteService.swift; sourceTree = "<group>"; };
+		C78843342C4F672E008B8C8D /* ModifyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyModel.swift; sourceTree = "<group>"; };
+		C78843362C4F673A008B8C8D /* DeleteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteModel.swift; sourceTree = "<group>"; };
 		C7934F8F2C3D12A3003B3245 /* CalendarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCollectionViewCell.swift; sourceTree = "<group>"; };
 		C7A027B32C3F960A003C28BA /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		C7A48B9C2C3BDA420013304A /* AccountBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AccountBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -120,8 +128,8 @@
 				C7A48BAD2C3BDA440013304A /* Info.plist */,
 				C7934F8F2C3D12A3003B3245 /* CalendarCollectionViewCell.swift */,
 				C7A027B32C3F960A003C28BA /* AddViewController.swift */,
-				C763DFB32C3FF6FF00D6201E /* DetailViewController.swift */,
 				C7E819C22C42580600F4C39B /* AddCalendarCollectionViewCell.swift */,
+				C763DFB32C3FF6FF00D6201E /* DetailViewController.swift */,
 				C7063B6F2C4E620D00CFF3CE /* DetailTableViewCell.swift */,
 			);
 			path = AccountBook;
@@ -135,6 +143,8 @@
 				C7CD8D972C4EB22100A34028 /* ViewAllService.swift */,
 				C7CD8D9C2C4EB9A000A34028 /* ViewDetailService.swift */,
 				C7CD8DA02C4EBB1600A34028 /* EnrollService.swift */,
+				C78843302C4F65E2008B8C8D /* ModifyService.swift */,
+				C78843322C4F65EC008B8C8D /* DeleteService.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -145,6 +155,8 @@
 				C7CD8D9A2C4EB30400A34028 /* ViewAllModel.swift */,
 				C7CD8D9E2C4EBA0B00A34028 /* ViewDetailModel.swift */,
 				C7CD8DA22C4EBB2F00A34028 /* EnrollModel.swift */,
+				C78843342C4F672E008B8C8D /* ModifyModel.swift */,
+				C78843362C4F673A008B8C8D /* DeleteModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -280,6 +292,7 @@
 				C7934F902C3D12A3003B3245 /* CalendarCollectionViewCell.swift in Sources */,
 				C7A48BA42C3BDA420013304A /* ViewController.swift in Sources */,
 				C7CD8D982C4EB22100A34028 /* ViewAllService.swift in Sources */,
+				C78843352C4F672E008B8C8D /* ModifyModel.swift in Sources */,
 				C7CD8D942C4EAFC500A34028 /* APIConstants.swift in Sources */,
 				C763DFB42C3FF6FF00D6201E /* DetailViewController.swift in Sources */,
 				C7CD8DA32C4EBB2F00A34028 /* EnrollModel.swift in Sources */,
@@ -287,6 +300,9 @@
 				C7CD8D9B2C4EB30400A34028 /* ViewAllModel.swift in Sources */,
 				C7CD8D9D2C4EB9A000A34028 /* ViewDetailService.swift in Sources */,
 				C7CD8DA12C4EBB1600A34028 /* EnrollService.swift in Sources */,
+				C78843332C4F65EC008B8C8D /* DeleteService.swift in Sources */,
+				C78843372C4F673A008B8C8D /* DeleteModel.swift in Sources */,
+				C78843312C4F65E2008B8C8D /* ModifyService.swift in Sources */,
 				C7A48BA22C3BDA420013304A /* SceneDelegate.swift in Sources */,
 				C7CD8D9F2C4EBA0B00A34028 /* ViewDetailModel.swift in Sources */,
 			);
@@ -351,7 +367,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -414,7 +430,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
