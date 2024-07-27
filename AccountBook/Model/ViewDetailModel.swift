@@ -14,8 +14,8 @@ struct ViewDetailModel : Codable {
 struct ViewDetailResponse : Codable {
     let id: Int
     let date: String
-    let type: Int
+    let type: String
     let category : String
-    let price : String
+    let price : Int
     let content : String
 }

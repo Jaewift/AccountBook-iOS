@@ -12,8 +12,8 @@ final class CalendarCollectionViewCell: UICollectionViewCell {
     static let identifier = "CalendarCollectionViewCell"
     
     private lazy var dayLabel = UILabel()
-    private lazy var incomeLabel = UILabel()
-    private lazy var expenseLabel = UILabel()
+    var incomeLabel = UILabel()
+    var expenseLabel = UILabel()
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -70,13 +70,5 @@ final class CalendarCollectionViewCell: UICollectionViewCell {
     
     func updateDay(day: String) {
         self.dayLabel.text = day
-    }
-    
-    func updateIncome() {
-        self.incomeLabel.text = "+10000"
-    }
-    
-    func updateExpense() {
-        self.expenseLabel.text = "-10000"
     }
 }

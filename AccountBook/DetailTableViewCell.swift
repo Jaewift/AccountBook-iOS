@@ -29,7 +29,18 @@ class DetailTableViewCell: UITableViewCell {
 extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let nextVC = self.storyboard?.instantiateViewController(withIdentifier: "AddVC") as? AddViewController else { return }
         
+        let detailData = detailDatas[indexPath.section]
+        nextVC.incomeOrExpenseData = detailData.type
+        nextVC.dateData = detailData.date
+        nextVC.categoryData = detailData.category
+        nextVC.costData = detailData.price
+        nextVC.contentData = detailData.content
+        nextVC.buttonText = "수정하기"
+        nextVC.idData = detailData.id
+        
+        self.navigationController?.pushViewController(nextVC, animated: true)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -51,18 +62,36 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: DetailTableViewCell = tableView.dequeueReusableCell(withIdentifier: "Detail_TableViewCell", for: indexPath) as! DetailTableViewCell
         
-        let detailData = detailDatas[indexPath.section]
-        
-        cell.categoryLabel.text = detailData.category
-        cell.contentLabel.text = detailData.content
-        if (detailData.type == 1) {
-            cell.priceLabel.text = "-" + String(detailData.price)
-        } else {
-            cell.priceLabel.text = String(detailData.price)
-        }
+//        let detailData = detailDatas[indexPath.section]
+//        
+//        cell.categoryLabel.text = detailData.category
+//        cell.contentLabel.text = detailData.content
+//        if (detailData.type == "EXPANSE") {
+//            cell.priceLabel.text = "-" + String(detailData.price)
+//        } else {
+//            cell.priceLabel.text = String(detailData.price)
+//        }
         
         cell.selectionStyle = .none
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let delete = UIContextualAction(style: .normal, title: nil) { (UIContextualAction, UIView, success: @escaping (Bool) -> Void) in
+            print("삭제 클릭 됨")
+//            let detailData = self.detailDatas[indexPath.section]
+//            let parmeterDatas = DeleteModel(id: detailData.id)
+//            APIDelete.instance.SendingDelete(enrollId: detailData.id, parameters: parmeterDatas)
+//            
+//            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
+//                  self.getViewDetail()
+//            }
+//            success(true)
+        }
+        delete.backgroundColor = .black
+        delete.title = "삭제"
+        
+        return UISwipeActionsConfiguration(actions: [delete])
     }
 }

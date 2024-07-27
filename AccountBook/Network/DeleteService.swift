@@ -9,9 +9,9 @@ import Foundation
 import Alamofire
 
 class APIDelete {
-    static let intnstance = APIDelete()
+    static let instance = APIDelete()
     
-    func SendingDelete(enrollId: Int, parameters: DeleteModel, handler: @escaping (_ result: DeleteResultModel)->(Void)) {
+    func SendingDelete(enrollId: Int, parameters: DeleteModel) {
         let url = APIConstants.enrollURL + "/\(enrollId)"
         let headers:HTTPHeaders = [
             "content-type": "application/json"
@@ -20,14 +20,8 @@ class APIDelete {
         AF.request(url, method: .delete, parameters: parameters, encoder: JSONParameterEncoder.default, headers: headers).response { responce in
             switch responce.result {
             case .success(let data):
-                print(String(decoding: data!, as: UTF8.self))
                 do {
-                    let json = try JSONSerialization.jsonObject(with: data!, options: .fragmentsAllowed)
-                    print(json)
-                    
-                    let jsonresult = try JSONDecoder().decode(DeleteResultModel.self, from: data!)
-                    handler(jsonresult)
-                    print(jsonresult)
+            
                 } catch {
                     print(error.localizedDescription)
                 }

@@ -23,6 +23,8 @@ class AddViewController: UIViewController {
     @IBOutlet weak var contentTextField: UITextField!
     @IBOutlet weak var costTextField: UITextField!
     
+    @IBOutlet weak var completeButton: UIButton!
+
     private lazy var dateLabel = UILabel()
     private lazy var previousButton = UIButton()
     private lazy var nextButton = UIButton()
@@ -37,8 +39,18 @@ class AddViewController: UIViewController {
     private var postdateData: String = ""
     
     private var enrollData: EnrollResultModel!
+    private var modifyData: ModifyResultModel!
     
     var incomeOrExpense: Int = 0
+    
+    var buttonText: String = "완료하기"
+
+    var incomeOrExpenseData: String = ""
+    var dateData: String = ""
+    var categoryData: String = ""
+    var contentData: String = ""
+    var costData: Int = 0
+    var idData: Int = 0
     
     let textAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white,NSAttributedString.Key.font: UIFont(name: "SFPro-Semibold", size: 13)]
 
@@ -49,6 +61,19 @@ class AddViewController: UIViewController {
         self.lineLabel.isHidden = true
         
         self.dateTextField.isEnabled = false
+        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
+            if self.incomeOrExpenseData == "INCOME" {
+                self.incomeExpenseSegment.selectedSegmentIndex = 0
+            } else {
+                self.incomeExpenseSegment.selectedSegmentIndex = 1
+            }
+            self.dateTextField.text = self.dateData
+            self.categoryTextField.text = self.categoryData
+            self.contentTextField.text = self.contentData
+            self.costTextField.text = "\(self.costData)"
+            self.completeButton.setTitle(self.buttonText, for: .normal)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -245,8 +270,13 @@ class AddViewController: UIViewController {
     }
     
     @IBAction func Enroll_Tapped(_ sender: Any) {
-        let parameterDatas = EnrollModel(date: postdateData, type: self.incomeOrExpense, category: categoryTextField.text ?? "", price: Int(costTextField.text ?? "") ?? 0, content: contentTextField.text ?? "")
-        APIEnrollPost.instance.SendingPostEnroll(parameters: parameterDatas) { result in self.enrollData = result }
+        if buttonText == "완료하기" {
+            let parameterDatas = EnrollModel(date: postdateData, type: self.incomeOrExpense, category: categoryTextField.text ?? "", price: Int(costTextField.text ?? "") ?? 0, content: contentTextField.text ?? "")
+            APIEnrollPost.instance.SendingPostEnroll(parameters: parameterDatas) { result in self.enrollData = result }
+        } else {
+            let parameterDatas2 = ModifyModel(type: self.incomeOrExpense, date: postdateData, category: categoryTextField.text ?? "", price: Int(costTextField.text ?? "") ?? 0, content: contentTextField.text ?? "")
+            APIModifyPut.instance.SendingPut(enrollId: idData, parameters: parameterDatas2) { result in self.modifyData = result }
+        }
     }
 }
 

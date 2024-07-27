@@ -9,7 +9,7 @@ import Foundation
 import Alamofire
 
 class APIModifyPut {
-    static let intnstance = APIModifyPut()
+    static let instance = APIModifyPut()
     
     func SendingPut(enrollId: Int, parameters: ModifyModel, handler: @escaping (_ result: ModifyResultModel)->(Void)) {
         let url = APIConstants.enrollURL + "/\(enrollId)"

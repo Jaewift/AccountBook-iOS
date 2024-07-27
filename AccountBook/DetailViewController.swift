@@ -13,7 +13,11 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     
     var detailDatas: [ViewDetailResponse] = []
+    var deleteData: DeleteResultModel!
     var dateLabel: String?
+    var year: String = ""
+    var month: String = ""
+    var day: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,7 +26,7 @@ class DetailViewController: UIViewController {
         DetailTV.dataSource = self
         
         monthDaySend()
-//        getViewDetail()
+//        self.getViewDetail()
     }
     
     func monthDaySend() {
@@ -44,20 +48,54 @@ class DetailViewController: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
-    private func getViewDetail() {
-        ViewDetailService.shared.getViewDetail(year: 2024, month: 7, day: 22) { result in
-            switch result {
-            case .success(let response):
-                guard let response = response as? ViewDetailModel else {
-                    break
-                }
-                self.detailDatas = response.results
-                
-            default:
-                break
+    func getViewDetail() {
+        
+        let url = APIConstants.enrollURL + "/\(year)/\(month)/\(day)"
+        let encodedStr = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        
+        guard let url = URL(string: encodedStr) else { print("err"); return }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        
+        URLSession.shared.dataTask(with: request) { [self] data, response, error in
+            if error != nil {
+                print("err")
+                return
             }
-            self.DetailTV.reloadData()
-        }
+            
+            guard let response = response as? HTTPURLResponse, (200 ..< 299) ~=
+            response.statusCode else {
+                print("Error: HTTP request failed")
+                return
+            }
+            
+            if let safeData = data {
+                print(String(decoding: safeData, as: UTF8.self))
+                
+                do {
+                    let decodedData = try JSONDecoder().decode([ViewDetailResponse].self, from: safeData)
+                    self.detailDatas = decodedData
+                    DispatchQueue.main.async {
+                        self.DetailTV.reloadData()
+                    }
+                    print(detailDatas)
+                } catch let DecodingError.dataCorrupted(context) {
+                    print(context)
+                } catch let DecodingError.keyNotFound(key, context) {
+                    print("Key '\(key)' not found:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch let DecodingError.valueNotFound(value, context) {
+                    print("Value '\(value)' not found:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch let DecodingError.typeMismatch(type, context)  {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    print("error: ", error)
+                }
+            }
+        }.resume()
     }
     
     @IBAction func back_Tapped(_ sender: Any) {

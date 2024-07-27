@@ -30,11 +30,17 @@ final class ViewController: UIViewController {
     private let dateFormatter = DateFormatter()
     private var calendarDate = Date()
     private var days = [String]()
-    private var selectDay: String = ""
+    
+    private var year: String = ""
+    private var month: String = ""
+    
+    var allDatas: ViewAllModel?
+    var allDetailDatas: [ViewAllResponse] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configure()
+//        self.getViewAll()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -47,6 +53,58 @@ final class ViewController: UIViewController {
         super.viewWillDisappear(animated)
         
         navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
+    private func getViewAll() {
+        
+        let url = APIConstants.enrollURL + "/\(year)/\(month)"
+        let encodedStr = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        
+        guard let url = URL(string: encodedStr) else { print("err"); return }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        
+        URLSession.shared.dataTask(with: request) { [self] data, response, error in
+            if error != nil {
+                print("err")
+                return
+            }
+            
+            guard let response = response as? HTTPURLResponse, (200 ..< 299) ~=
+            response.statusCode else {
+                print("Error: HTTP request failed")
+                return
+            }
+            
+            if let safeData = data {
+                print(String(decoding: safeData, as: UTF8.self))
+                
+                do {
+                    let decodedData = try JSONDecoder().decode(ViewAllModel.self, from: safeData)
+                    self.allDatas = decodedData
+                    self.allDetailDatas = decodedData.enrolls
+                    print(allDetailDatas)
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
+                        self.incomeMoneyLabel.text = "+\(self.allDatas?.totalIncome ?? 0)"
+                        self.expenseMoneyLabel.text = "-\(self.allDatas?.totalExpense ?? 0)"
+                    }
+                } catch let DecodingError.dataCorrupted(context) {
+                    print(context)
+                } catch let DecodingError.keyNotFound(key, context) {
+                    print("Key '\(key)' not found:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch let DecodingError.valueNotFound(value, context) {
+                    print("Value '\(value)' not found:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch let DecodingError.typeMismatch(type, context)  {
+                    print("Type '\(type)' mismatch:", context.debugDescription)
+                    print("codingPath:", context.codingPath)
+                } catch {
+                    print("error: ", error)
+                }
+            }
+        }.resume()
     }
     
     private func configure() {
@@ -211,6 +269,23 @@ final class ViewController: UIViewController {
     private func updateTitle(){
         let date = self.dateFormatter.string(from: self.calendarDate)
         self.titleLabel.text = date
+        
+        let startIndex = date.startIndex
+        let endIndex = date.index(startIndex, offsetBy: 3)
+        let substring = date[startIndex...endIndex]
+        
+        year = "\(substring)"
+        
+        if date.count == 8 {
+            let monthData = String.Index(utf16Offset: 6, in: date)
+            month = "\(monthData)"
+        } else {
+            let monthData = String.Index(utf16Offset: 6, in: date)
+            let monthData2 = String.Index(utf16Offset: 7, in: date)
+            month = "\(monthData)\(monthData2)"
+        }
+        
+        //        self.getViewAll()
     }
     
     private func updateDays(){
@@ -336,7 +411,6 @@ final class ViewController: UIViewController {
             
     private func configureIncomeMoneyLabel() {
         self.contentView.addSubview(self.incomeMoneyLabel)
-        self.incomeMoneyLabel.text = "+20000"
         self.incomeMoneyLabel.textColor = UIColor(red: 43/255, green: 217/255, blue: 104/255, alpha: 1)
         self.incomeMoneyLabel.font = UIFont(name: "SFPro-Regular", size: 17)
         self.incomeMoneyLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -348,7 +422,6 @@ final class ViewController: UIViewController {
                 
     private func configureExpenseMoneyLabel() {
         self.contentView.addSubview(self.expenseMoneyLabel)
-        self.expenseMoneyLabel.text = "-20000"
         self.expenseMoneyLabel.textColor = UIColor(red: 103/255, green: 140/255, blue: 46/255, alpha: 1)
         self.expenseMoneyLabel.font = UIFont(name: "SFPro-Regular", size: 17)
         self.expenseMoneyLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -368,13 +441,22 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate, 
         let day = days[indexPath.item]
         
         if titleLabel.text?.count == 8 {
-            let month = monthLabel[String.Index(encodedOffset: 6)]
+            let month = String.Index(utf16Offset: 6, in: monthLabel)
             nextVC.dateLabel = "\(month)월 \(day)일"
+            nextVC.month = "\(month)"
         } else {
-            let month = monthLabel[String.Index(encodedOffset: 6)]
-            let month2 = monthLabel[String.Index(encodedOffset: 7)]
+            let month = String.Index(utf16Offset: 6, in: monthLabel)
+            let month2 = String.Index(utf16Offset: 7, in: monthLabel)
+//            let month2 = monthLabel[String.Index(encodedOffset: 7)]
             nextVC.dateLabel = "\(month)\(month2)월 \(day)일"
+            nextVC.month = "\(month)\(month2)"
         }
+        let startIndex = monthLabel.startIndex
+        let endIndex = monthLabel.index(startIndex, offsetBy: 3)
+        let substring = monthLabel[startIndex...endIndex]
+        
+        nextVC.year = "\(substring)"
+        nextVC.day = "\(day)"
         
         self.navigationController?.pushViewController(nextVC, animated: true)
     }
@@ -386,8 +468,22 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate, 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CalendarCollectionViewCell.identifier, for: indexPath) as? CalendarCollectionViewCell else { return UICollectionViewCell() }
         cell.updateDay(day: self.days[indexPath.item])
-        cell.updateIncome()
-        cell.updateExpense()
+        
+        for i in 0..<allDetailDatas.count {
+            for j in 0..<days.count {
+                if (allDetailDatas[i].type == "INCOME") && (allDetailDatas[i].date.suffix(2) == days[j]){
+                    cell.incomeLabel.text = "\(allDetailDatas[i].price)"
+                    cell.expenseLabel.text = ""
+                } else if (allDetailDatas[i].type == "EXPANSE") && (allDetailDatas[i].date.suffix(2) == days[j]) {
+                    cell.incomeLabel.text = ""
+                    cell.expenseLabel.text = "\(allDetailDatas[i].price)"
+                } else {
+                    cell.incomeLabel.text = ""
+                    cell.expenseLabel.text = ""
+                }
+            }
+        }
+        
         return cell
     }
     

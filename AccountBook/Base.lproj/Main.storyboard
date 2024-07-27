@@ -363,6 +363,7 @@
                     <connections>
                         <outlet property="calendarView" destination="s0I-yc-meT" id="LY3-kZ-dId"/>
                         <outlet property="categoryTextField" destination="EnP-e6-lW5" id="3e6-K8-JE1"/>
+                        <outlet property="completeButton" destination="w7T-A7-1xp" id="dyA-cN-kug"/>
                         <outlet property="contentTextField" destination="bws-ng-f4O" id="avK-3O-UFh"/>
                         <outlet property="costTextField" destination="WDv-Oe-nQL" id="366-47-t6a"/>
                         <outlet property="dateTextField" destination="0fY-sd-mCx" id="95e-aW-HZk"/>

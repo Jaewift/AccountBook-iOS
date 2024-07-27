@@ -9,7 +9,7 @@ import Foundation
 
 struct APIConstants {
     // MARK: - Base URL
-    static let baseURL = "localhost:3000"
+    static let baseURL = "http://43.203.179.126:8081"
     
     static let enrollURL = baseURL + "/enrolls"
 }

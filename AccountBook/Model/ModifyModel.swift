@@ -11,7 +11,7 @@ struct ModifyModel : Encodable {
     let type: Int
     let date: String
     let category : String
-    let price : String
+    let price : Int
     let content : String
 }
 
@@ -20,6 +20,6 @@ struct ModifyResultModel : Codable {
     let type: Int
     let date: String
     let category : String
-    let price : String
+    let price : Int
     let content : String
 }
