@@ -62,17 +62,26 @@ class AddViewController: UIViewController {
         
         self.dateTextField.isEnabled = false
         
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
-            if self.incomeOrExpenseData == "INCOME" {
-                self.incomeExpenseSegment.selectedSegmentIndex = 0
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
+            if self.incomeOrExpenseData != "" {
+                if self.incomeOrExpenseData == "INCOME" {
+                    self.incomeExpenseSegment.selectedSegmentIndex = 0
+                } else {
+                    self.incomeExpenseSegment.selectedSegmentIndex = 1
+                }
+                self.dateTextField.text = self.dateData
+                self.categoryTextField.text = self.categoryData
+                self.contentTextField.text = self.contentData
+                self.costTextField.text = "\(self.costData)"
+                self.completeButton.setTitle(self.buttonText, for: .normal)
             } else {
-                self.incomeExpenseSegment.selectedSegmentIndex = 1
+                self.incomeExpenseSegment.selectedSegmentIndex = 0
+                self.dateTextField.text = ""
+                self.categoryTextField.text = ""
+                self.contentTextField.text = ""
+                self.costTextField.text = ""
+                self.completeButton.setTitle(self.buttonText, for: .normal)
             }
-            self.dateTextField.text = self.dateData
-            self.categoryTextField.text = self.categoryData
-            self.contentTextField.text = self.contentData
-            self.costTextField.text = "\(self.costData)"
-            self.completeButton.setTitle(self.buttonText, for: .normal)
         }
     }
     
@@ -270,12 +279,15 @@ class AddViewController: UIViewController {
     }
     
     @IBAction func Enroll_Tapped(_ sender: Any) {
+        print(buttonText)
         if buttonText == "완료하기" {
             let parameterDatas = EnrollModel(date: postdateData, type: self.incomeOrExpense, category: categoryTextField.text ?? "", price: Int(costTextField.text ?? "") ?? 0, content: contentTextField.text ?? "")
             APIEnrollPost.instance.SendingPostEnroll(parameters: parameterDatas) { result in self.enrollData = result }
+            self.navigationController?.popViewController(animated: true)
         } else {
             let parameterDatas2 = ModifyModel(type: self.incomeOrExpense, date: postdateData, category: categoryTextField.text ?? "", price: Int(costTextField.text ?? "") ?? 0, content: contentTextField.text ?? "")
             APIModifyPut.instance.SendingPut(enrollId: idData, parameters: parameterDatas2) { result in self.modifyData = result }
+            self.navigationController?.popViewController(animated: true)
         }
     }
 }
@@ -284,8 +296,13 @@ extension AddViewController: UICollectionViewDataSource, UICollectionViewDelegat
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let date = self.dateFormatter.string(from: self.calendarDate)
         let postDate = self.postDateFormatter.string(from: self.calendarDate)
-        dateTextField.text = "\(date) \(days[indexPath.item])일"
-        postdateData = "\(postDate)-\(days[indexPath.item])"
+        if (Int(days[indexPath.item]) ?? 0 >= 10) {
+            dateTextField.text = "\(date) \(days[indexPath.item])일"
+            postdateData = "\(postDate)-\(days[indexPath.item])"
+        } else {
+            dateTextField.text = "\(date) 0\(days[indexPath.item])일"
+            postdateData = "\(postDate)-0\(days[indexPath.item])"
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

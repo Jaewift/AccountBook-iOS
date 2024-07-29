@@ -40,13 +40,19 @@ final class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configure()
-//        self.getViewAll()
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
+            self.getViewAll()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         navigationController?.setNavigationBarHidden(true, animated: animated)
+        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
+            self.getViewAll()
+        }
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -84,10 +90,10 @@ final class ViewController: UIViewController {
                     let decodedData = try JSONDecoder().decode(ViewAllModel.self, from: safeData)
                     self.allDatas = decodedData
                     self.allDetailDatas = decodedData.enrolls
-                    print(allDetailDatas)
-                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
+                    DispatchQueue.main.async {
                         self.incomeMoneyLabel.text = "+\(self.allDatas?.totalIncome ?? 0)"
                         self.expenseMoneyLabel.text = "-\(self.allDatas?.totalExpense ?? 0)"
+                        self.collectionView.reloadData()
                     }
                 } catch let DecodingError.dataCorrupted(context) {
                     print(context)
@@ -277,15 +283,15 @@ final class ViewController: UIViewController {
         year = "\(substring)"
         
         if date.count == 8 {
-            let monthData = String.Index(utf16Offset: 6, in: date)
+            let monthData = date[String.Index(encodedOffset: 6)]
             month = "\(monthData)"
         } else {
-            let monthData = String.Index(utf16Offset: 6, in: date)
-            let monthData2 = String.Index(utf16Offset: 7, in: date)
+            let monthData = date[String.Index(encodedOffset: 6)]
+            let monthData2 = date[String.Index(encodedOffset: 7)]
             month = "\(monthData)\(monthData2)"
         }
         
-        //        self.getViewAll()
+        self.getViewAll()
     }
     
     private func updateDays(){
@@ -441,13 +447,12 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate, 
         let day = days[indexPath.item]
         
         if titleLabel.text?.count == 8 {
-            let month = String.Index(utf16Offset: 6, in: monthLabel)
+            let month = monthLabel[String.Index(encodedOffset: 6)]
             nextVC.dateLabel = "\(month)월 \(day)일"
             nextVC.month = "\(month)"
         } else {
-            let month = String.Index(utf16Offset: 6, in: monthLabel)
-            let month2 = String.Index(utf16Offset: 7, in: monthLabel)
-//            let month2 = monthLabel[String.Index(encodedOffset: 7)]
+            let month = monthLabel[String.Index(encodedOffset: 6)]
+            let month2 = monthLabel[String.Index(encodedOffset: 7)]
             nextVC.dateLabel = "\(month)\(month2)월 \(day)일"
             nextVC.month = "\(month)\(month2)"
         }
@@ -471,15 +476,16 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate, 
         
         for i in 0..<allDetailDatas.count {
             for j in 0..<days.count {
-                if (allDetailDatas[i].type == "INCOME") && (allDetailDatas[i].date.suffix(2) == days[j]){
-                    cell.incomeLabel.text = "\(allDetailDatas[i].price)"
-                    cell.expenseLabel.text = ""
-                } else if (allDetailDatas[i].type == "EXPANSE") && (allDetailDatas[i].date.suffix(2) == days[j]) {
-                    cell.incomeLabel.text = ""
-                    cell.expenseLabel.text = "\(allDetailDatas[i].price)"
-                } else {
-                    cell.incomeLabel.text = ""
-                    cell.expenseLabel.text = ""
+                if (allDetailDatas[i].type == "INCOME") && (allDetailDatas[i].date.suffix(1) == days[j]) {
+                    if indexPath.row == j {
+                        cell.incomeLabel.text = "+\(allDetailDatas[i].price)"
+                        cell.expenseLabel.text = ""
+                    }
+                } else if (allDetailDatas[i].type == "EXPENSE") && (allDetailDatas[i].date.suffix(2) == days[j]) {
+                    if indexPath.row == j {
+                        cell.incomeLabel.text = ""
+                        cell.expenseLabel.text = "-\(allDetailDatas[i].price)"
+                    }
                 }
             }
         }

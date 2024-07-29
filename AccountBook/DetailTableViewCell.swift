@@ -62,15 +62,15 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: DetailTableViewCell = tableView.dequeueReusableCell(withIdentifier: "Detail_TableViewCell", for: indexPath) as! DetailTableViewCell
         
-//        let detailData = detailDatas[indexPath.section]
-//        
-//        cell.categoryLabel.text = detailData.category
-//        cell.contentLabel.text = detailData.content
-//        if (detailData.type == "EXPANSE") {
-//            cell.priceLabel.text = "-" + String(detailData.price)
-//        } else {
-//            cell.priceLabel.text = String(detailData.price)
-//        }
+        let detailData = detailDatas[indexPath.section]
+        
+        cell.categoryLabel.text = detailData.category
+        cell.contentLabel.text = detailData.content
+        if (detailData.type == "EXPANSE") {
+            cell.priceLabel.text = "-" + String(detailData.price)
+        } else {
+            cell.priceLabel.text = String(detailData.price)
+        }
         
         cell.selectionStyle = .none
         
@@ -80,14 +80,14 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let delete = UIContextualAction(style: .normal, title: nil) { (UIContextualAction, UIView, success: @escaping (Bool) -> Void) in
             print("삭제 클릭 됨")
-//            let detailData = self.detailDatas[indexPath.section]
-//            let parmeterDatas = DeleteModel(id: detailData.id)
-//            APIDelete.instance.SendingDelete(enrollId: detailData.id, parameters: parmeterDatas)
-//            
-//            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
-//                  self.getViewDetail()
-//            }
-//            success(true)
+            let detailData = self.detailDatas[indexPath.section]
+            let parmeterDatas = DeleteModel(id: detailData.id)
+            APIDelete.instance.SendingDelete(enrollId: detailData.id, parameters: parmeterDatas)
+            
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
+                  self.getViewDetail()
+            }
+            success(true)
         }
         delete.backgroundColor = .black
         delete.title = "삭제"

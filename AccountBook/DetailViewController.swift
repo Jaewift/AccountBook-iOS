@@ -26,7 +26,9 @@ class DetailViewController: UIViewController {
         DetailTV.dataSource = self
         
         monthDaySend()
-//        self.getViewDetail()
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
+            self.getViewDetail()
+        }
     }
     
     func monthDaySend() {
@@ -40,6 +42,10 @@ class DetailViewController: UIViewController {
         super.viewWillAppear(animated)
         
         navigationController?.setNavigationBarHidden(true, animated: animated)
+        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
+            self.getViewDetail()
+        }
     }
 
     override func viewWillDisappear(_ animated: Bool) {
