@@ -34,8 +34,11 @@ final class ViewController: UIViewController {
     private var year: String = ""
     private var month: String = ""
     
-    var allDatas: ViewAllModel?
-    var allDetailDatas: [ViewAllResponse] = []
+    private var allDatas: ViewAllModel?
+    private var allDetailDatas: [ViewAllResponse] = []
+    private var alarmDateDatas: [String] = []
+    private var alarmTypeDatas: [String] = []
+    private var alarmPriceDatas: [Int] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -90,6 +93,12 @@ final class ViewController: UIViewController {
                     let decodedData = try JSONDecoder().decode(ViewAllModel.self, from: safeData)
                     self.allDatas = decodedData
                     self.allDetailDatas = decodedData.enrolls
+                    for i in 0..<self.allDetailDatas.count {
+                        self.alarmDateDatas.append(self.allDetailDatas[i].date)
+                        self.alarmTypeDatas.append(self.allDetailDatas[i].type)
+                        self.alarmPriceDatas.append(self.allDetailDatas[i].price)
+                        
+                    }
                     DispatchQueue.main.async {
                         self.incomeMoneyLabel.text = "+\(self.allDatas?.totalIncome ?? 0)"
                         self.expenseMoneyLabel.text = "-\(self.allDatas?.totalExpense ?? 0)"
@@ -472,20 +481,24 @@ extension ViewController: UICollectionViewDataSource, UICollectionViewDelegate, 
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CalendarCollectionViewCell.identifier, for: indexPath) as? CalendarCollectionViewCell else { return UICollectionViewCell() }
-        cell.updateDay(day: self.days[indexPath.item])
+        let day = self.days[indexPath.item]
         
-        for i in 0..<allDetailDatas.count {
-            for j in 0..<days.count {
-                if (allDetailDatas[i].type == "INCOME") && (allDetailDatas[i].date.suffix(1) == days[j]) {
-                    if indexPath.row == j {
-                        cell.incomeLabel.text = "+\(allDetailDatas[i].price)"
-                        cell.expenseLabel.text = ""
-                    }
-                } else if (allDetailDatas[i].type == "EXPENSE") && (allDetailDatas[i].date.suffix(2) == days[j]) {
-                    if indexPath.row == j {
-                        cell.incomeLabel.text = ""
-                        cell.expenseLabel.text = "-\(allDetailDatas[i].price)"
-                    }
+        cell.updateDay(day: day)
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        
+        if let dayInt = Int(day), dayInt > 0 {
+            var components = self.calendar.dateComponents([.year, .month], from: self.calendarDate)
+            components.day = dayInt
+            if let date = self.calendar.date(from: components) {
+                let dateString = dateFormatter.string(from: date)
+                if self.alarmTypeDatas.contains("INCOME") && self.alarmDateDatas.contains(dateString) {
+                    cell.incomeLabel.text = "+\(alarmPriceDatas)"
+                    cell.expenseLabel.text = ""
+                } else if self.alarmTypeDatas.contains("EXPENSE") && self.alarmDateDatas.contains(dateString) {
+                    cell.incomeLabel.text = ""
+                    cell.expenseLabel.text = "-\(alarmPriceDatas)"
                 }
             }
         }
